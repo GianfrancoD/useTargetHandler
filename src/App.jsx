@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://127.0.0.1:5000/registrados", {
+        const response = await fetch("http://0.0.0.0:0000/registrados", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
