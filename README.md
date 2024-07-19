@@ -11,7 +11,6 @@
 - `Gestión de estado en tiempo real`: useTarget proporciona una función handleTarget que actualiza el estado del formulario en tiempo real según los cambios realizados por el usuario.
 - `Envío de formularios seguro`: El hook incluye una función handleSubmit que te permite enviar el formulario de manera segura y realizar acciones personalizadas después de la submitting.
 - `Reinicialización del formulario`: Después de enviar el formulario, useTarget reinicializa el estado del formulario a sus valores iniciales.
-- `Tipado con PropTypes`: El hook utiliza PropTypes para definir la forma en que se espera que se utilicen las funciones y variables, lo que ayuda a mantener la integridad del código.
 - `Compatibilidad`: useTarget es compatible con todas las versiones de React a partir de la 16.8.
 
 ### Ventajas
