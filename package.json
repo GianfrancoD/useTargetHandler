@@ -1,7 +1,7 @@
 {
   "name": "usetarget",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "use-target-hook te permite manejar formularios de manera sencilla y eficiente, sin necesidad de escribir código repetitivo.",
   "keywords": [
     "react",
