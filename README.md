@@ -5,6 +5,11 @@
 
 # Hook useTargetHandler 📝
 
+### Instalaciòn
+```
+npm i usetargethandler
+```
+
 ### Caracteristicas
 
 - `Iniciales personalizables`: El hook permite pasar valores iniciales para el formulario, lo que te da flexibilidad para adaptarlo a tus necesidades específicas.
