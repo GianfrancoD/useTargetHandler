@@ -1,6 +1,6 @@
 {
-  "name": "usetarget-hook",
-  "version": "v1.0.0-beta.1",
+  "name": "usetarget",
+  "version": "1.0.0",
   "private": true,
   "description": "use-target-hook te permite manejar formularios de manera sencilla y eficiente, sin necesidad de escribir código repetitivo.",
   "keywords": [
