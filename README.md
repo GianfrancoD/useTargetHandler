@@ -45,14 +45,15 @@ const MyForm = () => {
 };
 ```
 
-### Implementando useTarget con useRequest
+### Implementando useTarget con useHttpRequest
 
 ```
 function App() {
   const [target, setTarget, handleTarget, handleSubmit] = useTarget({
     nombre: "",
   });
-  const { apiCall, apiResponse, userFound } = useRequest();
+  const { apiCall, apiResponse, userFound } = useHttpRequest
+();
 
   useEffect(() => {
     apiCall("registrados", null, null, "get", "application/json");
