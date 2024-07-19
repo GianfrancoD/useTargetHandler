@@ -1,9 +1,9 @@
 ![useTarget](https://github.com/user-attachments/assets/fcdef414-d99f-49ae-8370-3b288d8b6fad)
-![licence](https://img.shields.io/github/license/GianfrancoD/useTarget)
+![licence](https://img.shields.io/github/license/GianfrancoD/useTargetHandler)
 ![Badge en Desarollo](https://img.shields.io/badge/Status-En%20Desarrollo-green)
-![commit](https://img.shields.io/github/commits-since/GianfrancoD/useRequest/1.0.0)
+![commit](https://img.shields.io/github/commits-since/GianfrancoD/useTargetHandler/1.0.0)
 
-# Hook useTarget 📝
+# Hook useTargetHandler 📝
 
 ### Caracteristicas
 
@@ -23,14 +23,14 @@
 
 ### Uso
 
-Para utilizar `useTarget`, simplemente importa el hook y llama a la función `useTarget` con los valores iniciales del formulario. Luego, utiliza la variable `target` para acceder al estado actual del formulario, la función `setTarget` para actualizar el estado del formulario de manera explícita, y las funciones `handleTarget` y `handleSubmit` para gestionar el estado del formulario y enviarlo.
+Para utilizar `useTargetHandler`, simplemente importa el hook y llama a la función `useTargetHandler` con los valores iniciales del formulario. Luego, utiliza la variable `target` para acceder al estado actual del formulario, la función `setTarget` para actualizar el estado del formulario de manera explícita, y las funciones `handleTarget` y `handleSubmit` para gestionar el estado del formulario y enviarlo.
 
 - ### Destacado
   - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`.
 
 ```
 const MyForm = () => {
-  const [target, setTarget, handleTarget, handleSubmit] = useTarget({
+  const [target, setTarget, handleTarget, handleSubmit] = useTargetHandler({
     name: '',
     email: '',
   });
@@ -49,7 +49,7 @@ const MyForm = () => {
 
 ```
 function App() {
-  const [target, setTarget, handleTarget, handleSubmit] = useTarget({
+  const [target, setTarget, handleTarget, handleSubmit] = useTargetHandler({
     nombre: "",
   });
   const { apiCall, apiResponse, userFound } = useHttpRequest
