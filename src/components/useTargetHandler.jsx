@@ -1,7 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const useTarget = (initialValues = { target, setTarget, handleSubmit }) => {
+const useTargetHandler = (
+  initialValues = { target, setTarget, handleSubmit }
+) => {
   const [target, setTarget] = useState(initialValues);
 
   const handleTarget = (e) => {
@@ -23,18 +25,18 @@ const useTarget = (initialValues = { target, setTarget, handleSubmit }) => {
   return [target, handleTarget, handleSubmit];
 };
 
-export default useTarget;
+export default useTargetHandler;
 
-useTarget.prototype = {
+useTargetHandler.prototype = {
   handleTarget: PropTypes.func.isRequired,
 };
 
-useTarget.prototype.handleTarget.propTypes = {
+useTargetHandler.prototype.handleTarget.propTypes = {
   target: PropTypes.object.isRequired,
   event: PropTypes.object.isRequired,
 };
 
-useTarget.prototype.handleTarget.propTypes.event.propTypes = {
+useTargetHandler.prototype.handleTarget.propTypes.event.propTypes = {
   target: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.any.isRequired,

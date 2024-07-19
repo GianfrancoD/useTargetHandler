@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import useTarget from "./components/useTarget";
+import useTargetHandler from "./components/useTargetHandler";
 
 function App() {
-  const [target, setTarget, handleSubmit] = useTarget({
+  const [target, setTarget, handleSubmit] = useTargetHandler({
     nombre: "",
   });
   const [data, setData] = useState([]);
