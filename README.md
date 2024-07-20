@@ -59,41 +59,56 @@ const MyForm = () => {
 ### Implementando useTargetHandler con useHttpRequest
 
 ```
-function App() {
-  const [target, setTarget, handleTarget, handleSubmit] = useTargetHandler({
-    nombre: "",
-  });
-  const { apiCall, apiResponse, userFound } = useHttpRequest
-();
+import { useTargetHandler } from "usetargethandler";
+import { useHttpRequest } from "usehttprequest";
 
-  useEffect(() => {
-    apiCall("registrados", null, null, "get", "application/json");
-  }, []);
+export const Formulario = () => {
+  const [target, setTarget, handleSubmit] = useTargetHandler({
+    nombre: "",
+    apellido: "",
+  });
+  const { apiCall, apiResponse, userFound } = useHttpRequest();
+
+  const handleFormSubmit = (target) => {
+    apiCall("create", undefined, target, "post", "application/json");
+  };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>Usuarios</label>
+      <form onSubmit={handleSubmit(handleFormSubmit)}>
+        <label></label>
         <input
           type="text"
-          name="nombre"
           value={target.nombre}
-          onChange={handleTarget}
+          pattern="[a-zA-Z]+"
+          placeholder="nombre"
+          onChange={setTarget}
+          name="nombre"
+          required
         />
-        <button type="submit">Enviar</button>
+        <label></label>
+        <input
+          type="text"
+          value={target.apellido}
+          pattern="[a-zA-Z]+"
+          placeholder="apellido"
+          onChange={setTarget}
+          name="apellido"
+          required
+        />
+        <button>Enviar</button>
       </form>
-      {userFound && (
-        <ul>
-          {apiResponse.map((item) => (
-            <li key={item.id}>{item.nombre}</li>
-          ))}
-        </ul>
+
+      {apiResponse ? (
+        <p style={{ color: "green" }}>{apiResponse}</p>
+      ) : userFound ? (
+        <p style={{ color: "red" }}>{userFound}</p>
+      ) : (
+        <p></p>
       )}
     </>
   );
-}
-
-export default App;
+};
 ```
 
 ⚠️`Nuevas versiones y Actualizaciones Proximamente`⚠️
