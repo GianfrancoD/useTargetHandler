@@ -4,6 +4,9 @@
 [![npm downloads](https://img.shields.io/npm/dt/usetargethandler.svg)](https://www.npmjs.com/package/usetargethandler)
 ![commit](https://img.shields.io/github/commits-since/GianfrancoD/useTargetHandler/1.0.8)
 ![npm](https://img.shields.io/npm/v/usetargethandler)
+![GitHub release](https://img.shields.io/github/release/GianfrancoD/usetargethandler)
+
+
 
 
 # Hook useTargetHandler 📝
