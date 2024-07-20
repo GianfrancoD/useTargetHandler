@@ -9,7 +9,14 @@
     "api",
     "axios",
     "http",
-    "request"
+    "request",
+    "web development",
+    "react form",
+    "frontend",
+    "form state",
+    "form validation",
+    "package",
+    "api integration"
   ],
   "main": "src/index.js",
   "exports": {
