@@ -25,8 +25,6 @@ const useTargetHandler = (
   return [target, handleTarget, handleSubmit];
 };
 
-export default useTargetHandler;
-
 useTargetHandler.prototype = {
   handleTarget: PropTypes.func.isRequired,
 };
@@ -41,3 +39,4 @@ useTargetHandler.prototype.handleTarget.propTypes.event.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.any.isRequired,
 };
+export default useTargetHandler;
