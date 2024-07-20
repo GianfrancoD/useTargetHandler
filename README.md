@@ -1,8 +1,10 @@
 ![useTarget](https://github.com/user-attachments/assets/fcdef414-d99f-49ae-8370-3b288d8b6fad)
 ![licence](https://img.shields.io/github/license/GianfrancoD/useTargetHandler)
 ![Badge en Desarollo](https://img.shields.io/badge/Status-En%20Desarrollo-green)
-![commit](https://img.shields.io/github/commits-since/GianfrancoD/useTargetHandler/1.0.8)
 [![npm downloads](https://img.shields.io/npm/dt/usetargethandler.svg)](https://www.npmjs.com/package/usetargethandler)
+![commit](https://img.shields.io/github/commits-since/GianfrancoD/useTargetHandler/1.0.8)
+![npm](https://img.shields.io/npm/v/usetargethandler)
+
 
 # Hook useTargetHandler 📝
 
