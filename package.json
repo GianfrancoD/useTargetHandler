@@ -1,6 +1,6 @@
 {
   "name": "usetargethandler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "use-target-hook te permite manejar formularios de manera sencilla y eficiente, sin necesidad de escribir código repetitivo.",
   "keywords": [
@@ -12,6 +12,10 @@
     "request"
   ],
   "main": "src/index.js",
+  "exports": {
+    "import": "./src/main.jsx",
+    "require": "./src/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/GianfrancoD/useTarget.git"
