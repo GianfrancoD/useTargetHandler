@@ -6,6 +6,7 @@
 ![npm](https://img.shields.io/npm/v/usetargethandler)
 ![GitHub release](https://img.shields.io/github/release/GianfrancoD/usetargethandler)
 
+Actualizaciones [CHANGELOG](./CHANGELOG.md).
 
 
 
