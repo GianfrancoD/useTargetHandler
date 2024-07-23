@@ -1,3 +1,3 @@
 import useTargetHandler from "./useTargetHandler";
 export { useTargetHandler };
-// Javascript
+// Typescript
