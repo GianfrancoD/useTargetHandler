@@ -23,7 +23,7 @@ JSX
    import { useTargetHandler } from "usetargethandler";
 
 TSX
-   import { useTargetHandler } from "usetargethandler";
+   import { useTargetHandler } from "usetargethandler/tsx";
 ```
 
 ### Caracteristicas
