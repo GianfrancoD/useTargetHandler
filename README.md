@@ -29,6 +29,8 @@ import { useTargetHandler } from "usetargethandler";
 - `Envío de formularios seguro`: El hook incluye una función handleSubmit que te permite enviar el formulario de manera segura y realizar acciones personalizadas después de la submitting.
 - `Reinicialización del formulario`: Después de enviar el formulario, useTargetHandler reinicializa el estado del formulario a sus valores iniciales.
 - `Compatibilidad`: useTargetHandler es compatible con todas las versiones de React a partir de la 16.8.
+- `Compatibilidad con JavaScript y TypeScript`: useTargetHandler es compatible con archivos JavaScript, JSX y TypeScript (TSX), lo que permite su uso en una amplia variedad de proyectos y configuraciones.
+- `Validación de campos`: El hook permite implementar validaciones personalizadas para cada campo del formulario, asegurando que los datos ingresados por el usuario cumplan con los requisitos establecidos.
 
 ### Ventajas
 
