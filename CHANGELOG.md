@@ -4,10 +4,6 @@ Todas las novedades de este proyecto se documentan en este archivo.
 
 ## [Unreleased]
 
-## [1.0.11] - 2024-07-25
-### Corregido
-- **Corrección de bug en la versión TSX**: Se solucionó un problema que causaba errores en la versión TypeScript del hook `useTargetHandler`.
-
 ## [1.0.10] - 2024-07-24
 ### Agregado
 - **Prueba de versión**: Se realizaron pruebas exhaustivas de la nueva funcionalidad y se ajustaron detalles menores en el código.
