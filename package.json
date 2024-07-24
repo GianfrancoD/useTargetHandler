@@ -1,6 +1,6 @@
 {
   "name": "usetargethandler",
-  "version": "1.0.9",
+  "version": "1.0.8",
   "private": false,
   "description": "use-target-hook te permite manejar formularios de manera sencilla y eficiente, sin necesidad de escribir código repetitivo.",
   "keywords": [
@@ -25,6 +25,10 @@
     ".": {
       "import": "./src/index.js",
       "require": "./src/index.js"
+    },
+    "./tsx": {
+      "import": "./src/index.tsx",
+      "require": "./src/index.tsx"
     }
   },
   "repository": {
@@ -36,12 +40,19 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0"
+    "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
