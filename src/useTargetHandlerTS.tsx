@@ -27,7 +27,7 @@ const useTargetHandler = (initialValues: {
   };
 
   const handleSubmit =
-    (callback: (data: { [key: string]: string }) => void) =>
+    (callback: (data: Target) => void) =>
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       console.log("Enviar datos:", target);
