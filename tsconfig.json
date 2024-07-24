@@ -18,5 +18,5 @@
     "types": ["node"],
     "allowImportingTsExtensions": true
   },
-  "include": ["src", "env.d.ts"]
+  "include": ["src"]
 }
