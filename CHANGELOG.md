@@ -3,12 +3,20 @@
 Todas las novedades de este proyecto se documentan en este archivo.
 
 ## [Unreleased]
+
+## [1.0.9] - 2024-07-25
 ### Agregado
-- Implementación de mejoras en la gestión del estado en el hook `useTargetHandler`.
-- Documentación mejorada con ejemplos de uso en el README.
+- **Soporte para validación avanzada de formularios**: Implementa un sistema de validación más robusto que permite validar múltiples campos al mismo tiempo, mostrar mensajes de error personalizados y manejar validaciones asíncronas.
+- **Compatibilidad con JavaScript y TypeScript**: `useTargetHandler` es compatible con archivos JavaScript, JSX y TypeScript (TSX), lo que permite su uso en una amplia variedad de proyectos y configuraciones.
+
+### Mejorado
+- **Mejoras en el manejo de errores**: Implementa un mejor manejo de errores en el hook, permitiendo a los usuarios manejar errores de forma personalizada y proporcionar mensajes de error más significativos.
+- **Rendimiento optimizado**: Realiza optimizaciones en la lógica del hook para mejorar el rendimiento, especialmente en formularios grandes o con múltiples campos.
+- **Documentación actualizada**: Actualiza la documentación del hook para incluir información sobre las nuevas características, ejemplos de uso y casos de uso avanzados.
 
 ### Corregido
-- Corrección de errores menores en la lógica de manejo del estado.
+- **Corrección de errores en la gestión de formularios anidados**: Soluciona cualquier problema que pueda surgir al usar el hook en formularios anidados o en componentes reutilizables.
+- **Mejora en la gestión de eventos de formulario**: Ajusta la lógica del hook para manejar de manera más robusta los eventos de formulario, como el envío del formulario y el restablecimiento del estado.
 
 ## [1.0.8] - 2024-07-20
 ### Corregido
