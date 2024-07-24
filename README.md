@@ -19,7 +19,11 @@ npm i usetargethandler
 
 ### Importaciòn
 ```
-import { useTargetHandler } from "usetargethandler";
+JSX
+   import { useTargetHandler } from "usetargethandler";
+
+TSX
+   import { useTargetHandler } from "usetargethandler"; o import { useTargetHandler } from "usetargethandler/tsx";
 ```
 
 ### Caracteristicas
@@ -46,6 +50,15 @@ Para utilizar `useTargetHandler`, simplemente importa el hook y llama a la funci
 
 - ### Destacado
   - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`.
+    
+
+```
+JSX
+   const [target, setTarget, handleTarget, handleSubmit] = useTargetHandler()
+
+TSX
+   const {target, handleTarget, handleSubmit} = useTargetHandler()
+```
 
 ```
 const MyForm = () => {
