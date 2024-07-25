@@ -24,7 +24,7 @@
     "async validation",
     "form submission handling"
   ],
-  "main": "src/index.ts",
+  "main": "src/main.ts",
   "exports": {
     ".": {
       "import": "./src/main.ts",
