@@ -30,7 +30,7 @@
       "import": "./src/index.js",
       "require": "./src/index.js"
     },
-    "./tsx": {
+    "./ts": {
       "import": "./src/main.ts",
       "require": "./src/main.ts"
     }
@@ -48,7 +48,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -56,6 +55,7 @@
     "typescript": "^4.9.5"
   },
   "devDependencies": {
+    "@types/react": "^18.3.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

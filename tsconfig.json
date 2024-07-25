@@ -16,8 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["node"],
-    "allowImportingTsExtensions": true,
-    "baseUrl": "node_modules"
+    "allowImportingTsExtensions": false
+    //"baseUrl": "node_modules"
     //"outDir": "build",
   },
   "include": ["src/**/*"]
