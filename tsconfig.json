@@ -17,6 +17,7 @@
     "jsx": "react-jsx",
     "types": ["node"],
     "allowImportingTsExtensions": false
+    //"outDir": "build",
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

@@ -12,7 +12,17 @@
     "web development",
     "frontend",
     "typescript",
-    "javascript"
+    "javascript",
+    "state management",
+    "form handling",
+    "react hook form",
+    "form builder",
+    "frontend library",
+    "typescript library",
+    "form validation rules",
+    "conditional validation",
+    "async validation",
+    "form submission handling"
   ],
   "main": "src/index.js",
   "exports": {
@@ -21,8 +31,8 @@
       "require": "./src/index.js"
     },
     "./tsx": {
-      "import": "./src/index.tsx",
-      "require": "./src/index.tsx"
+      "import": "./src/main.ts",
+      "require": "./src/main.ts"
     }
   },
   "repository": {
