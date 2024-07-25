@@ -1,20 +1,25 @@
 import { useState } from "react";
 
-interface UseTargetHandler<T> {
-  target: T;
+interface Target {
+  [key: string]: any;
+}
+
+interface UseTargetHandler {
+  target: Target;
   handleTarget: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (
-    callback: (data: T) => void
+    callback: (data: Target) => void
   ) => (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const useTargetHandler = <T extends { [key: string]: string }>(
-  initialValues: T
-): UseTargetHandler<T> => {
-  const [target, setTarget] = useState<T>(initialValues);
+const useTargetHandler = (initialValues: {
+  [key: string]: string;
+}): UseTargetHandler => {
+  const [target, setTarget] = useState<Target>(initialValues);
 
   const handleTarget = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    if (!name && !value) return;
     setTarget((prevForm) => ({
       ...prevForm,
       [name]: value,
@@ -22,7 +27,8 @@ const useTargetHandler = <T extends { [key: string]: string }>(
   };
 
   const handleSubmit =
-    (callback: (data: T) => void) => (e: React.FormEvent<HTMLFormElement>) => {
+    (callback: (data: { [key: string]: string }) => void) =>
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       console.log("Enviar datos:", target);
       callback(target);
