@@ -24,9 +24,14 @@
     "async validation",
     "form submission handling"
   ],
+  "index": "src/index.js",
   "main": "src/main.ts",
   "exports": {
     ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    },
+    "./ts": {
       "import": "./src/main.ts",
       "require": "./src/main.ts"
     }
