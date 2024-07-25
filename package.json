@@ -32,8 +32,7 @@
     },
     "./tsx": {
       "import": "./src/main.ts",
-      "require": "./src/main.ts",
-      "types": "./src/main.d.ts"
+      "require": "./src/main.ts"
     }
   },
   "repository": {
