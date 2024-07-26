@@ -4,6 +4,10 @@ Todas las novedades de este proyecto se documentan en este archivo.
 
 ## [Unreleased]
 
+## [1.0.26] - 2024-07-26
+### Mejorado
+- **Manejo de Errores**: Se mejoró el manejo de errores en el hook `useTargetHandler`, permitiendo que los mensajes de error se establezcan de manera más clara y concisa, y asegurando que los inputs controlados no cambien a un estado no controlado.
+
 ## [1.0.10] - 2024-07-24
 ### Agregado
 - **Prueba de versión**: Se realizaron pruebas exhaustivas de la nueva funcionalidad y se ajustaron detalles menores en el código.
