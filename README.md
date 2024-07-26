@@ -6,9 +6,11 @@
 ![npm](https://img.shields.io/npm/v/usetargethandler)
 ![GitHub release](https://img.shields.io/github/release/GianfrancoD/usetargethandler)
 
-Actualizaciones [CHANGELOG](./CHANGELOG.md).
+## Actualizaciones & Funcionalidad
 
+Ver los cambios realizados en el proyecto en [CHANGELOG](./CHANGELOG.md)
 
+- Conoce las mejoras y cambios en la funcionalidad del proyecto en [FUNCTIONALITY](FUNCTIONALITY.md)
 
 # Hook useTargetHandler 📝
 
