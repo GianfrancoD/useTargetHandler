@@ -25,7 +25,6 @@
     "form submission handling"
   ],
   "index": "src/index.js",
-  "main": "src/main.ts",
   "exports": {
     ".": {
       "import": "./src/index.js",
