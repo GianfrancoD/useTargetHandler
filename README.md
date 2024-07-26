@@ -49,7 +49,7 @@ Para utilizar `useTargetHandler`, simplemente importa el hook y llama a la funci
   - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`.
     
 
-```
+```jsx
 const MyForm = () => {
   const [target, setTarget, handleTarget, handleSubmit] = useTargetHandler({
     name: '',
@@ -68,7 +68,7 @@ const MyForm = () => {
 
 ### Implementando useTargetHandler con useHttpRequest
 
-```
+```jsx
 import { useTargetHandler } from "usetargethandler";
 import { useHttpRequest } from "usehttprequest";
 
