@@ -21,13 +21,14 @@ const useTargetHandler = <T extends { [key: string]: string }>(
     }));
   };
 
-  const handleSubmit =
-    (callback: (data: T) => void) => (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (callback: (data: T) => void) => {
+    return (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       console.log("Enviar datos:", target);
       callback(target);
       setTarget(initialValues);
     };
+  };
 
   return { target, handleTarget, handleSubmit };
 };
