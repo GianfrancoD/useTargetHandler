@@ -45,6 +45,55 @@ Para utilizar `useTargetHandler`, simplemente importa el hook y llama a la funci
 
 - ### Destacado
   - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`.
+
+
+- ### Nuevo parametro [ Errors ]
+  #### ANTES ❌
+   ```
+   <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="text"
+          value={target.nombre}
+          placeholder="nombre"
+          onChange={setTarget}
+          name="nombre"
+        />
+
+        <input
+          type="text"
+          value={target.apellido}
+          placeholder="apellido"
+          onChange={setTarget}
+          name="apellido"
+        />
+
+        <button>Enviar</button>
+      </form>
+   ```
+   #### AHORA 🔥
+  ```
+  <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="text"
+          value={target.nombre || ""} 
+          placeholder="nombre"
+          onChange={setTarget}
+          name="nombre"
+        />
+        {errors.apellido && <span>{errors.apellido}</span>}
+
+        <input
+          type="text"
+          value={target.apellido || ""}
+          placeholder="apellido"
+          onChange={setTarget}
+          name="apellido"
+        />
+        {errors.apellido && <span>{errors.apellido}</span>}
+
+        <button>Enviar</button>
+      </form>
+  ```
     
 
 ```
