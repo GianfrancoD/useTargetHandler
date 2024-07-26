@@ -11,7 +11,6 @@ Todas las novedades de este proyecto se documentan en este archivo.
 ## [1.0.9] - 2024-07-24
 ### Agregado
 - **Soporte para validación avanzada de formularios**: Implementa un sistema de validación más robusto que permite validar múltiples campos al mismo tiempo, mostrar mensajes de error personalizados y manejar validaciones asíncronas.
-- **Compatibilidad con JavaScript y TypeScript**: `useTargetHandler` es compatible con archivos JavaScript, JSX y TypeScript (TSX), lo que permite su uso en una amplia variedad de proyectos y configuraciones.
 
 ### Mejorado
 - **Mejoras en el manejo de errores**: Implementa un mejor manejo de errores en el hook, permitiendo a los usuarios manejar errores de forma personalizada y proporcionar mensajes de error más significativos.
