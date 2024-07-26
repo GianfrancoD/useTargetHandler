@@ -11,14 +11,12 @@
     "form validation",
     "web development",
     "frontend",
-    "typescript",
     "javascript",
     "state management",
     "form handling",
     "react hook form",
     "form builder",
     "frontend library",
-    "typescript library",
     "form validation rules",
     "conditional validation",
     "async validation",
@@ -29,10 +27,6 @@
     ".": {
       "import": "./src/index.js",
       "require": "./src/index.js"
-    },
-    "./ts": {
-      "import": "./src/main.ts",
-      "require": "./src/main.ts"
     }
   },
   "repository": {

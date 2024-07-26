@@ -1,3 +1,2 @@
-import useTargetHandler from "./useTargetHandlerJS";
+import useTargetHandler from "./useTargetHandler";
 export { useTargetHandler };
-// Javascript
