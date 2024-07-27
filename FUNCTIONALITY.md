@@ -38,7 +38,7 @@ Se agregó un nuevo parámetro `errors` para mejorar la validación de formulari
     onChange={setTarget}
     name="nombre"
   />
-  {/* Se agregó la validación de errores para el campo apellido */}
+  {/* Se agregó la validación de errores para el campo nombre */}
   {errors.apellido && <span>{errors.apellido}</span>}
 
   <input
