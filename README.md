@@ -26,12 +26,12 @@ Ver los cambios realizados en el proyecto en [CHANGELOG](./CHANGELOG.md)
 
 ### Caracteristicas
 
-- `Iniciales personalizables`: El hook permite pasar valores iniciales para el formulario, lo que te da flexibilidad para adaptarlo a tus necesidades específicas.
-- `Gestión de estado en tiempo real`: useTargetHandler proporciona una función handleTarget que actualiza el estado del formulario en tiempo real según los cambios realizados por el usuario.
-- `Envío de formularios seguro`: El hook incluye una función handleSubmit que te permite enviar el formulario de manera segura y realizar acciones personalizadas después de la submitting.
-- `Reinicialización del formulario`: Después de enviar el formulario, useTargetHandler reinicializa el estado del formulario a sus valores iniciales.
-- `Compatibilidad`: useTargetHandler es compatible con todas las versiones de React a partir de la 16.8.
-- `Validación de campos`: El hook permite implementar validaciones personalizadas para cada campo del formulario, asegurando que los datos ingresados por el usuario cumplan con los requisitos establecidos.
+- **`Iniciales personalizables`**: El hook permite pasar valores iniciales para el formulario, lo que te da flexibilidad para adaptarlo a tus necesidades específicas.
+- **`Gestión de estado en tiempo real`**: `useTargetHandler` proporciona una función `handleTarget` que actualiza el estado del formulario en tiempo real según los cambios realizados por el usuario.
+- **`Envío de formularios seguro`**: El hook incluye una función `handleSubmit` que te permite enviar el formulario de manera segura y realizar acciones personalizadas después de la submitting.
+- **`Reinicialización del formulario`**: Después de enviar el formulario, `useTargetHandler` reinicializa el estado del formulario a sus valores iniciales.
+- **`Compatibilidad`**: `useTargetHandler` es compatible con todas las versiones de React a partir de la 16.8.
+- **`Validación de campos`**: El hook permite implementar validaciones personalizadas para cada campo del formulario, asegurando que los datos ingresados por el usuario cumplan con los requisitos establecidos.
 
 ### Ventajas
 
@@ -40,6 +40,7 @@ Ver los cambios realizados en el proyecto en [CHANGELOG](./CHANGELOG.md)
 - Proporciona una forma fácil de actualizar el estado del formulario en tiempo real
 - Incluye una función para enviar el formulario de manera segura
 - Reinicializa el formulario después de enviarlo
+- Implementa validaciones personalizadas para cada campo.
 
 ### Uso
 
