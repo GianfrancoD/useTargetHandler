@@ -8,9 +8,9 @@
 
 ## Actualizaciones & Funcionalidad
 
-Ver los cambios realizados en el proyecto en [CHANGELOG](./CHANGELOG.md)
+Ver los cambios realizados en el Hook [CHANGELOG](./CHANGELOG.md)
 
-- Conoce las mejoras y cambios en la funcionalidad del proyecto en [FUNCTIONALITY](FUNCTIONALITY.md)
+- Conoce las mejoras y cambios en la funcionalidad del Hook [FUNCTIONALITY](FUNCTIONALITY.md)
 
 # Hook useTargetHandler 📝
 
