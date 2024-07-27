@@ -154,4 +154,4 @@ export const Formulario = () => {
 };
 ```
 
-⚠️`Nuevas versiones y Actualizaciones Proximamente`⚠️
+🚨 `Nuevas versiones y Actualizaciones Proximamente` 🚨
