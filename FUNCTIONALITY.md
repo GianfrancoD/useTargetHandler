@@ -57,7 +57,7 @@ const [target, setTarget, handleSubmit, errors] = useTargetHandler({
     name="nombre"
   />
   {/* Se agregó la validación de errores para el campo nombre */}
-  {errors.apellido && <span>{errors.apellido}</span>}
+  {errors.nombre && <span>{errors.nombre}</span>}
 
   <input
     type="text"
