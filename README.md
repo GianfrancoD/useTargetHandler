@@ -42,7 +42,7 @@ Ver los cambios realizados en el Hook [CHANGELOG](./CHANGELOG.md)
 - Reinicializa el formulario después de enviarlo
 - Implementa validaciones personalizadas para cada campo.
 
-### Uso
+### Uso 💎
 
 Para utilizar `useTargetHandler`, simplemente importa el hook y llama a la función `useTargetHandler` con los valores iniciales del formulario. Luego, utiliza la variable `target` para acceder al estado actual del formulario, la función `setTarget` para actualizar el estado del formulario de manera explícita, y las funciones `handleTarget` y `handleSubmit` para gestionar el estado del formulario y enviarlo.
 
@@ -65,9 +65,41 @@ const MyForm = () => {
     </form>
   );
 };
+
+```
+### Errores ⚠️
+```jsx
+const [target, setTarget, handleSubmit, errors] = useTargetHandler({
+    nombre: "",
+    apellido: "",
+  });
+
+<form onSubmit={handleSubmit(onSubmit)}>
+  <input
+    type="text"
+    value={target.nombre || ""}
+    placeholder="nombre"
+    onChange={setTarget}
+    name="nombre"
+  />
+  {/* Se agregó la validación de errores para el campo nombre */}
+  {errors.nombre && <span>{errors.nombre}</span>}
+
+  <input
+    type="text"
+    value={target.apellido || ""}
+    placeholder="apellido"
+    onChange={setTarget}
+    name="apellido"
+  />
+  {/* Se agregó la validación de errores para el campo apellido */}
+  {errors.apellido && <span>{errors.apellido}</span>}
+
+  <button>Enviar</button>
+</form>
 ```
 
-### Implementando useTargetHandler con useHttpRequest
+### Implementando useTargetHandler con useHttpRequest 🔥
 
 ```jsx
 import { useTargetHandler } from "usetargethandler";
