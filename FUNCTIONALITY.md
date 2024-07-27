@@ -37,7 +37,7 @@ const [target, setTarget, handleSubmit] = useTargetHandler({
 </form>
 ```
 
-### AHORA 🔥
+### AHORA ✅
 
 ```jsx
 const [target, setTarget, handleSubmit, errors] = useTargetHandler({
