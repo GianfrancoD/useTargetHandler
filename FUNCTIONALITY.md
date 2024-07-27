@@ -5,7 +5,16 @@
 
 Se agregó un nuevo parámetro `errors` para mejorar la validación de formularios.
 
+
 #### ANTES ❌
+
+```jsx
+const [target, setTarget, handleSubmit] = useTargetHandler({
+    nombre: "",
+    apellido: "",
+  });
+```
+
 ```jsx
 <form onSubmit={handleSubmit(onSubmit)}>
   <input
@@ -29,6 +38,15 @@ Se agregó un nuevo parámetro `errors` para mejorar la validación de formulari
 ```
 
 ### AHORA 🔥
+
+```jsx
+const [target, setTarget, handleSubmit, errors] = useTargetHandler({
+    nombre: "",
+    apellido: "",
+  });
+```
+
+
 ```jsx
 <form onSubmit={handleSubmit(onSubmit)}>
   <input
