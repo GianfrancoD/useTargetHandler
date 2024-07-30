@@ -6,6 +6,16 @@ Todas las novedades de este proyecto se documentan en este archivo.
 
 ---
 
+## [1.0.27] - 2024-07-29
+### ✨ Mejorado
+- **Persistencia del Estado**: Se implementó la capacidad de guardar el estado del formulario en `localStorage` o `sessionStorage`, permitiendo a los usuarios retomar formularios incompletos.
+- **Lógica de Almacenamiento Condicional**: Se mejoró la lógica para asegurarse de que los datos solo se guarden en `localStorage` o `sessionStorage` si se especifica un tipo de almacenamiento válido. Si no se proporciona un tipo, el formulario no guardará datos en el almacenamiento.
+
+### Cambios en la API
+- **Cambio en la Firma de `useTargetHandler`**: Se modificó la firma de la función `useTargetHandler` para incluir un nuevo parámetro `storageType`, que permite especificar el tipo de almacenamiento (local o sesión).
+
+---
+
 ## [1.0.26] - 2024-07-26
 ### ✨ Mejorado
 - **Manejo de Errores**: Se mejoró el manejo de errores en el hook `useTargetHandler`, permitiendo que los mensajes de error se establezcan de manera más clara y concisa, y asegurando que los inputs controlados no cambien a un estado no controlado.
