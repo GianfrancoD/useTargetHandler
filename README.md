@@ -32,6 +32,8 @@ Ver los cambios realizados en el Hook [CHANGELOG](./CHANGELOG.md)
 - **`Reinicialización del formulario`**: Después de enviar el formulario, `useTargetHandler` reinicializa el estado del formulario a sus valores iniciales.
 - **`Compatibilidad`**: `useTargetHandler` es compatible con todas las versiones de React a partir de la 16.8.
 - **`Validación de campos`**: El hook permite implementar validaciones personalizadas para cada campo del formulario, asegurando que los datos ingresados por el usuario cumplan con los requisitos establecidos.
+- **`Persistencia del Estado y Almacenamiento Condicional`**:
+El hook guarda el estado del formulario en localStorage o sessionStorage, permitiendo a los usuarios retomar formularios incompletos.
 
 ### Ventajas
 
