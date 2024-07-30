@@ -155,3 +155,7 @@ export const Formulario = () => {
 ```
 
 🚨 `Nuevas versiones y Actualizaciones Proximamente` 🚨
+
+Màs sobre la Funcionalidad del HOOK 👉🏻 [FUNCTIONALITY](FUNCTIONALITY.md) 👈🏻
+
+No te pierdas las ultimas versiones 👉🏻 [CHANGELOG](./CHANGELOG.md) 👈🏻
