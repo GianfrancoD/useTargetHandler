@@ -46,14 +46,13 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
 
 ### Uso 💎
 
-Para utilizar `useTargetHandler`, simplemente importa el hook y llama a la función `useTargetHandler` con los valores iniciales del formulario. Luego, utiliza la variable `target` para acceder al estado actual del formulario, la función `setTarget` para actualizar el estado del formulario de manera explícita, y las funciones `handleTarget` y `handleSubmit` para gestionar el estado del formulario y enviarlo.
+- `target`: Contendrá los valores actuales del formulario, inicializados con `{ nombre: "", apellido: "" }`.
+- `handleTarget`: handleTarget se utilizará para manejar los cambios en los campos del formulario. Por ejemplo, puedes asignarla a un evento onChange en los inputs del formulario.
+- `handleSubmit`: handleSubmit se llamará cuando se envíe el formulario.
+- `errors`: Contendrá los errores de validación del formulario, que se pueden mostrar en la interfaz de usuario si hay errores. 
 
 - ### Destacado
   - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`.
-     - `target`: Contendrá los valores actuales del formulario, inicializados con `{ nombre: "", apellido: "" }`.
-     - `handleTarget`: handleTarget se utilizará para manejar los cambios en los campos del formulario. Por ejemplo, puedes asignarla a un evento onChange en los inputs del formulario.
-     - `handleSubmit`: handleSubmit se llamará cuando se envíe el formulario.
-     - `errors`: Contendrá los errores de validación del formulario, que se pueden mostrar en la interfaz de usuario si hay errores. 
     
 
 ```jsx
