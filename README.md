@@ -65,7 +65,7 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
   - el valor de `value={target.nombre}` debe ser igual a `name="nombre"` y del estado `{nombre: "", apellido: ""}` y asi le pueda funcionar el formularios.
 
  NUEVO 🆕 - 
-Nuevas noticias del Hook 👉🏻 [FUNCTIONALITY](FUNCTIONALITY.md) 👈🏻 - Cambios 👉🏻 [CHANGELOG](./CHANGELOG.md) 👈🏻
+[FUNCTIONALITY](FUNCTIONALITY.md) - [CHANGELOG](./CHANGELOG.md) 
 ```jsx
 import React from 'react';
 import useTargetHandler from './useTargetHandler';
