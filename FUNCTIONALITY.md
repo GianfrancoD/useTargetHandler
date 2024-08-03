@@ -1,3 +1,55 @@
+Versión 1.1.0: Validaciones Personalizadas
+=============================================
+Validaciones Personalizadas 🔒
+Se ha implementado el uso de propiedades como required, pattern, patternMessage y requiredMessage, permitiendo a los desarrolladores establecer restricciones específicas en los campos del formulario. Esto mejora la experiencia del usuario al proporcionar mensajes claros sobre los requisitos de entrada.
+
+ANTES ❌
+```jsx
+const [target, setTarget, handleSubmit] = useTargetHandler({
+    nombre: "",
+    apellido: "",
+  }, "local", "formData");
+```
+
+```jsx
+{errors.nombre && <span>{errors.nombre}</span>}
+```
+
+AHORA ✅
+
+```jsx
+ const [target, handleTarget, handleSubmit, errors] = useTargetHandler(
+    {
+      nombre: "",
+      apellido: "",
+    },
+    {
+      nombre: {
+        required: true,
+        requiredMessage: "El nombre es obligatorio",
+        pattern: /^[a-zA-Z]+$/,
+        patternMessage: "El nombre no puede contener números.",
+      },
+      apellido: {
+        required: true,
+        requiredMessage: "El apellido es obligatorio",
+        pattern: /^[a-zA-Z]+$/,
+        patternMessage: "El apellido no puede contener números.",
+      },
+    },
+    "local",
+    "formData"
+  );
+
+```
+
+```jsx
+{errors.nombre && <span>{errors.nombre.message}</span>}
+
+```
+
+
+
 Versión 1.0.27: Persistencia del Estado y Almacenamiento Condicional
 =============================================
 Persistencia del Estado en el formulario 💾
