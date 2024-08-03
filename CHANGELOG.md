@@ -6,7 +6,32 @@ Todas las novedades de este proyecto se documentan en este archivo.
 
 ---
 
-## [1.1.0] - 2024-08-04
+## [1.2.0] - 2024-08-03
+### ✨ Mejorado
+- **Nuevas Validaciones**:
+  - Se han agregado las siguientes propiedades de validación para los campos del formulario:
+    - **`minLength`**: Verifica que la longitud del valor ingresado sea al menos la mínima especificada.
+    - **`maxLength`**: Verifica que la longitud del valor ingresado no exceda la máxima especificada.
+    - **`matches`**: Permite validar que el valor de un campo coincida con el valor de otro campo (por ejemplo, para confirmar contraseñas).
+    - **`matchMessage`**: Proporciona un mensaje de error personalizado si los valores no coinciden, mejorando la claridad para el usuario.
+    - **`min` y `max`**: Verifican que el valor ingresado esté dentro de un rango específico, asegurando que los datos sean válidos (por ejemplo, para la edad).
+    - **`checked` y `checkedMessage`**: Aseguran que los checkboxes estén marcados y proporcionan mensajes claros si no lo están.
+  - **Validación para Botones de Radio**: Se ha implementado la propiedad `selected`, que verifica que al menos un botón de radio en un grupo esté seleccionado, junto con un mensaje de error personalizado.
+- Estas mejoras enriquecen la funcionalidad del formulario y optimizan la experiencia del usuario al proporcionar validaciones claras y efectivas.
+
+### 📚 Documentación
+- **Documentación Actualizada**:
+  - Se han agregado ejemplos claros en la documentación para facilitar la implementación de las nuevas características de validación.
+
+### 🐛 Correcciones
+- Se realizaron diversas correcciones menores para mejorar la estabilidad y el rendimiento del hook.
+
+### 🚀 Recomendaciones
+Se recomienda a todos los usuarios actualizar a la versión 1.2.0 para aprovechar las nuevas funcionalidades de validación y mejorar la experiencia del usuario en sus formularios.
+
+---
+
+## [1.1.0] - 2024-08-02
 ### ✨ Mejorado
 - **Validaciones Personalizadas**:
   - Se ha implementado la capacidad de definir propiedades de validación para los campos del formulario:
@@ -129,4 +154,4 @@ Se recomienda a todos los usuarios actualizar a la versión 1.1.0 para aprovecha
 ### ➕ Agregado
 - Creación inicial del hook `useTargetHandler`.
 - Soporte para la gestión de estado en formularios.
-- Configuración básica y pruebas iniciales.
+- Configuración básica y pruebas iniciales
