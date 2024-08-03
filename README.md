@@ -68,63 +68,163 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
 [FUNCTIONALITY](FUNCTIONALITY.md) - [CHANGELOG](./CHANGELOG.md) 
 ```jsx
 import React from 'react';
-import useTargetHandler from './useTargetHandler';
+import {useTargetHandler} from 'useTargetHandler';
 
 const Formulario = () => {
   const [target, handleTarget, handleSubmit, errors] = useTargetHandler(
     {
       nombre: "",
       apellido: "",
-
+      password: "",
+      confirmPassword: "",
+      email: "",
+      age: "",
+      terms: false,
+      gender: "",
     },
     {
       nombre: {
         required: true,
-        requiredMessage: "El nombre es obligatorio",
+        requiredMessage: "el nombre es obligatio !!!",
+        patternMessage: "no puede tener o llevar numeros",
         pattern: /^[a-zA-Z]+$/,
-        patternMessage: "El nombre no puede contener números.",
+        minLength: 1,
+        maxLength: 30,
       },
       apellido: {
         required: true,
-        requiredMessage: "El apellido es obligatorio",
         pattern: /^[a-zA-Z]+$/,
-        patternMessage: "El apellido no puede contener números.",
+        requiredMessage: "el apellido es obligatio !!!",
+        patternMessage: "no puede tener o llevar numeros",
       },
-    },
-    "local",
-    "formData"
+      email: {
+        required: true,
+        pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        patternMessage: "El correo no es válido",
+        requiredMessage: "el email es obligatiorio!!",
+      },
+      password: {
+        required: true,
+        minLength: 6,
+        requiredMessage: "La contraseña es obligatoria",
+      },
+      confirmPassword: {
+        required: true,
+        matches: "password",
+        matchMessage: "Las contraseñas no coinciden",
+        requiredMessage: "Debe confirmar su contraseña",
+      },
+      age: {
+        required: true,
+        min: 18,
+        max: 99,
+        requiredMessage: "La edad es obligatoria",
+      },
+      terms: {
+        checked: true,
+        checkedMessage: "Debes aceptar los términos y condiciones",
+      },
+    }
   );
 
-  const onSubmit = (data) => {
-    console.log("Datos enviados:", data);
+  const onSubmit = () => {
+    console.log(target);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="text"
-        name="nombre"
-        value={target.nombre}
-        onChange={handleTarget}
-        placeholder="Nombre"
-      />
-      {errors.nombre && <span>{errors.nombre.message}</span>}
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="text"
+          name="nombre"
+          value={target.nombre}
+          placeholder="nombre"
+          onChange={handleTarget}
+        />
+        {errors.nombre && <span>{errors.nombre.message}</span>}
 
-      <input
-        type="text"
-        name="apellido"
-        value={target.apellido}
-        onChange={handleTarget}
-        placeholder="Apellido"
-      />
-      {errors.apellido && <span>{errors.apellido.message}</span>}
+        <input
+          type="text"
+          name="apellido"
+          value={target.apellido}
+          placeholder="apellido"
+          onChange={handleTarget}
+        />
+        {errors.apellido && <span>{errors.apellido.message}</span>}
 
-      <button type="submit">Enviar</button>
-    </form>
+        <input
+          type="email"
+          name="email"
+          value={target.email}
+          placeholder="email"
+          onChange={handleTarget}
+        />
+        {errors.email && <span>{errors.email.message}</span>}
+
+        <input
+          type="password"
+          name="password"
+          value={target.password}
+          placeholder="password"
+          onChange={handleTarget}
+        />
+        {errors.password && <span>{errors.password.message}</span>}
+
+        <input
+          type="password"
+          name="confirmPassword"
+          value={target.confirmPassword}
+          placeholder="ConfirmPassword"
+          onChange={handleTarget}
+        />
+        {errors.confirmPassword && (
+          <span>{errors.confirmPassword.message}</span>
+        )}
+
+        <input
+          type="number"
+          name="age"
+          value={target.age}
+          placeholder="edad"
+          onChange={handleTarget}
+        />
+        {errors.age && <span>{errors.age.message}</span>}
+
+        <input
+          type="checkbox"
+          name="terms"
+          checked={target.terms}
+          onChange={handleTarget}
+        />
+        <label>Acepto los términos y condiciones</label>
+        {errors.terms && <span>{errors.terms.message}</span>}
+
+        <input
+          type="radio"
+          name="gender"
+          value="male"
+          checked={target.gender === "male"}
+          onChange={handleTarget}
+        />
+        <label>Masculino</label>
+
+        <input
+          type="radio"
+          name="gender"
+          value="female"
+          checked={target.gender === "female"}
+          onChange={handleTarget}
+        />
+        <label>Femenino</label>
+
+        {errors.gender && <span>{errors.gender.message}</span>}
+
+        <button>Enviar</button>
+      </form>
+    </>
   );
 };
 
-export default Formulario;
 ```
 
 ### Implementando useTargetHandler con useHttpRequest 🔥
