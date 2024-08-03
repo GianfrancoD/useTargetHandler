@@ -15,13 +15,18 @@ Ver los cambios realizados en el Hook [CHANGELOG](./CHANGELOG.md)
 # Hook useTargetHandler 📝
 
 ### Instalaciòn
-```
+```jsx
    npm i usetargethandler
 ```
 
 ### Importaciòn
-```
+```jsx
    import { useTargetHandler } from "usetargethandler";
+```
+
+### Actualizar version
+```jsx
+   npm update usetargethandler
 ```
 
 ### Caracteristicas
