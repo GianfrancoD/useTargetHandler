@@ -57,55 +57,69 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
 
 - ### Destacado
   - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`.
-    
+  - el valor de `value={target.nombre}` debe ser igual a `name="nombre"` y del estado `{nombre: "", apellido: ""}` y asi le pueda funcionar el formularios.
 
+ NUEVO 🆕 - 
+Nuevas noticias del Hook 👉🏻 [FUNCTIONALITY](FUNCTIONALITY.md) 👈🏻 - Cambios 👉🏻 [CHANGELOG](./CHANGELOG.md) 👈🏻
 ```jsx
-const MyForm = () => {
-  const [target, setTarget, handleTarget, handleSubmit] = useTargetHandler({
-    name: '',
-    email: '',
-  });
+import React from 'react';
+import useTargetHandler from './useTargetHandler';
+
+const Formulario = () => {
+  const [target, handleTarget, handleSubmit, errors] = useTargetHandler(
+    {
+      nombre: "",
+      apellido: "",
+
+    },
+    {
+      nombre: {
+        required: true,
+        requiredMessage: "El nombre es obligatorio",
+        pattern: /^[a-zA-Z]+$/,
+        patternMessage: "El nombre no puede contener números.",
+      },
+      apellido: {
+        required: true,
+        requiredMessage: "El apellido es obligatorio",
+        pattern: /^[a-zA-Z]+$/,
+        patternMessage: "El apellido no puede contener números.",
+      },
+    },
+    "local",
+    "formData"
+  );
+
+  const onSubmit = (data) => {
+    console.log("Datos enviados:", data);
+  };
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
-      <input type="text" name="name" value={target.name} onChange={handleTarget} />
-      <input type="email" name="email" value={target.email} onChange={handleTarget} />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        type="text"
+        name="nombre"
+        value={target.nombre}
+        onChange={handleTarget}
+        placeholder="Nombre"
+      />
+      {errors.nombre && <span>{errors.nombre.message}</span>}
+
+      <input
+        type="text"
+        name="apellido"
+        value={target.apellido}
+        onChange={handleTarget}
+        placeholder="Apellido"
+      />
+      {errors.apellido && <span>{errors.apellido.message}</span>}
+
       <button type="submit">Enviar</button>
     </form>
   );
 };
 
-```
-### Errores ⚠️
-```jsx
-const [target, setTarget, handleSubmit, errors] = useTargetHandler({
-    nombre: "",
-    apellido: "",
-  });
-
-<form onSubmit={handleSubmit(onSubmit)}>
-  <input
-    type="text"
-    value={target.nombre || ""}
-    placeholder="nombre"
-    onChange={setTarget}
-    name="nombre"
-  />
-  {/* Se agregó la validación de errores para el campo nombre */}
-  {errors.nombre && <span>{errors.nombre.message}</span>}
-
-  <input
-    type="text"
-    value={target.apellido || ""}
-    placeholder="apellido"
-    onChange={setTarget}
-    name="apellido"
-  />
-  {/* Se agregó la validación de errores para el campo apellido */}
-  {errors.apellido && <span>{errors.apellido.message}</span>}
-
-  <button>Enviar</button>
-</form>
+export default Formulario;
 ```
 
 ### Implementando useTargetHandler con useHttpRequest 🔥
