@@ -124,7 +124,9 @@ const Formulario = () => {
         checked: true,
         checkedMessage: "Debes aceptar los términos y condiciones",
       },
-    }
+    },
+      "local",
+      "formData"
   );
 
   const onSubmit = () => {
