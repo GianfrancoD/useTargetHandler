@@ -1,13 +1,34 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const validateRules = (name, value, rules) => {
+const validateRules = (name, value, rules, target) => {
   if (rules.required) {
-    if (!value.trim()) {
+    if (typeof value == "string" && !value.trim()) {
       return rules.requiredMessage || `${name} ${value} es obligatorio 🚨`;
     }
     if (rules.pattern && !rules.pattern.test(value)) {
       return rules.patternMessage || `${name} no es válido ❌`;
+    }
+    if (rules.minLength && value.length < rules.minLength) {
+      return `${name} debe tener al menos ${rules.minLength} caracteres`;
+    }
+    if (rules.maxLength && value.length > rules.maxLength) {
+      return `${name} no puede exceder ${rules.maxLength} caracteres`;
+    }
+    if (rules.matches && value !== target[rules.matches]) {
+      return rules.matchMessage || `${name} no coincide`;
+    }
+    if (rules.min && value < rules.min) {
+      return `${name} debe ser al menos ${rules.min}`;
+    }
+    if (rules.max && value > rules.max) {
+      return `${name} no puede ser mayor que ${rules.max}`;
+    }
+    if (rules.checked && !value) {
+      return rules.checkedMessage || `Debes aceptar ${name}`;
+    }
+    if (rules.selected && !value) {
+      return rules.selectedMessage || `Debes seleccionar ${name}`;
     }
   }
   return "";
@@ -30,13 +51,23 @@ const validateRules = (name, value, rules) => {
  *                                  - `requiredMessage`: Mensaje de error personalizado para campos obligatorios.
  *                                  - `pattern`: Expresión regular para validar el formato del campo.
  *                                  - `patternMessage`: Mensaje de error personalizado para validación de patrón.
+ *                                  - `minLength`: Verifica que la longitud del valor ingresado sea al menos la mínima especificada.
+ *                                  - `maxLength`: Verifica que la longitud del valor ingresado no exceda la máxima especificada.
+ *                                  - `matches`: Verifica que el valor de un campo coincida con el valor de otro campo.
+ *                                  - `matchMessage`: Mensaje de error personalizado si los valores no coinciden.
+ *                                  - `min`: Verifica que el valor ingresado sea mayor o igual al mínimo especificado.
+ *                                  - `max`: Verifica que el valor ingresado no sea mayor que el máximo especificado.
+ *                                  - `checked`: Verifica que el checkbox esté marcado.
+ *                                  - `checkedMessage`: Mensaje de error si el checkbox no está marcado.
+ *                                  - `selected`: Verifica que al menos un botón de radio en un grupo esté seleccionado.
+ *                                  - `selectedMessage`: Mensaje de error si no se selecciona ningún botón de radio.
  * @param {string|null} storageType - Tipo de almacenamiento a utilizar. Puede ser "local" para `localStorage`,
  *                                    "session" para `sessionStorage`, o `null` para no utilizar almacenamiento.
  *                                    Por defecto, es `null`.
  * @param {string} storageKey - Clave bajo la cual se almacenarán los datos del formulario en el almacenamiento.
  *                              Por defecto, se utiliza "formData".
  *
- * `Principales parametros del Hook`: target, handleTarget, handleSubmit, errors
+ * `Principales parámetros del Hook`: target, handleTarget, handleSubmit, errors
  *
  * @returns {[Object, Function, Function, Object]} - Un array que contiene:
  *   - `target`: Un objeto que representa los valores actuales del formulario.
@@ -84,26 +115,26 @@ const useTargetHandler = (
   const [errors, setErrors] = useState({});
 
   const handleTarget = (e) => {
-    const { name, value } = e.target;
+    const { name, type, checked, value } = e.target;
     if (!name) return;
     setTarget((prevForm) => ({
       ...prevForm,
-      [name]: value.trim() === "" ? `${name}` : value,
-      [name]: value || "",
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = (callback) => (e) => {
     e.preventDefault();
     const newError = Object.entries(target).reduce((acc, [key, value]) => {
-      value.trim() === "" &&
-        (acc[key] = { message: `${key} no puede estar vacio` });
+      typeof value === "string" && value.trim() === "" && !key.includes("terms")
+        ? (acc[key] = { message: `${key} no puede estar vacio` })
+        : null;
       return acc;
     }, {});
 
     Object.entries(target).forEach(([key, value]) => {
       const rules = validationRules[key] || {};
-      const error = validateRules(key, value, rules);
+      const error = validateRules(key, value, rules, target);
       if (error) {
         newError[key] = { message: error };
       }
