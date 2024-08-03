@@ -1,3 +1,132 @@
+Versión 1.2.0: Nuevas Validaciones y Mejoras en el Formulario
+Nuevas Validaciones y Mejoras 🚀
+Se han añadido nuevas funcionalidades al hook useTargetHandler, permitiendo una gestión más robusta de los formularios. Las nuevas propiedades incluyen:
+
+- minLength: Verifica que la longitud del valor ingresado sea al menos la mínima especificada.
+- maxLength: Verifica que la longitud del valor ingresado no exceda la máxima especificada.
+- matches: Permite validar que el valor de un campo coincida con el valor de otro campo (por ejemplo, para confirmar contraseñas).
+- matchMessage: Proporciona un mensaje de error personalizado si los valores no coinciden, mejorando la claridad para el usuario.
+- min y max: Verifican que el valor ingresado esté dentro de un rango específico, asegurando que los datos sean válidos (por ejemplo, para la edad).
+- checked y checkedMessage: Aseguran que los checkboxes estén marcados y proporcionan mensajes claros si no lo están.
+- Validación para Botones de Radio: Se ha implementado la propiedad selected, que verifica que al menos un botón de radio en un grupo esté seleccionado, junto con un mensaje de error personalizado.
+
+ANTES ❌
+```jsx
+ const [target, handleTarget, handleSubmit, errors] = useTargetHandler(
+    {
+      nombre: "",
+      apellido: "",
+    },
+    {
+      nombre: {
+        required: true,
+        requiredMessage: "El nombre es obligatorio",
+        pattern: /^[a-zA-Z]+$/,
+        patternMessage: "El nombre no puede contener números.",
+      },
+      apellido: {
+        required: true,
+        requiredMessage: "El apellido es obligatorio",
+        pattern: /^[a-zA-Z]+$/,
+        patternMessage: "El apellido no puede contener números.",
+      },
+    },
+    "local",
+    "formData"
+  );
+
+```
+
+AHORA ✅
+```jsx
+const [target, handleTarget, handleSubmit, errors] = useTargetHandler(
+    {
+      nombre: "",
+      apellido: "",
+      password: "",
+      confirmPassword: "",
+      email: "",
+      age: "",
+      terms: false, // Nuevo
+      gender: "", // Nuevo
+    },
+    {
+      nombre: {
+        required: true,
+        requiredMessage: "el nombre es obligatio !!!",
+        patternMessage: "no puede tener o llevar numeros",
+        pattern: /^[a-zA-Z]+$/,
+        minLength: 1, // Nuevo
+        maxLength: 30, // Nuevo
+      },
+      apellido: {
+        required: true,
+        pattern: /^[a-zA-Z]+$/,
+        requiredMessage: "el apellido es obligatio !!!",
+        patternMessage: "no puede tener o llevar numeros",
+      },
+      email: {
+        required: true,
+        pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        patternMessage: "El correo no es válido",
+        requiredMessage: "el email es obligatiorio!!",
+      },
+      password: {
+        required: true,
+        minLength: 6, // Nuevo
+        requiredMessage: "La contraseña es obligatoria",
+      },
+      confirmPassword: {
+        required: true,
+        matches: "password", // Nuevo
+        matchMessage: "Las contraseñas no coinciden", // Nuevo
+        requiredMessage: "Debe confirmar su contraseña",
+      },
+      age: {
+        required: true,
+        min: 18, // Nuevo
+        max: 99, // Nuevo
+        requiredMessage: "La edad es obligatoria",
+      },
+      terms: {
+        checked: true, // Nuevo
+        checkedMessage: "Debes aceptar los términos y condiciones", // Nuevo
+      },
+    }
+  );
+```
+VALIDACION DE CHECKBOX Y RADIO ✅
+```jsx
+<input
+          type="checkbox"
+          name="terms"
+          checked={target.terms}
+          onChange={handleTarget}
+        />
+        <label>Acepto los términos y condiciones</label>
+        {errors.terms && <span>{errors.terms.message}</span>}
+ <input
+          type="radio"
+          name="gender"
+          value="male"
+          checked={target.gender === "male"}
+          onChange={handleTarget}
+        />
+        <label>Masculino</label>
+
+        <input
+          type="radio"
+          name="gender"
+          value="female"
+          checked={target.gender === "female"}
+          onChange={handleTarget}
+        />
+        <label>Femenino</label>
+
+        {errors.gender && <span>{errors.gender.message}</span>}
+```
+
+
 Versión 1.1.0: Validaciones Personalizadas
 =============================================
 Validaciones Personalizadas 🔒
