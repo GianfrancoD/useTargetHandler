@@ -2,13 +2,13 @@ Versión 1.2.0: Nuevas Validaciones y Mejoras en el Formulario
 Nuevas Validaciones y Mejoras 🚀
 Se han añadido nuevas funcionalidades al hook useTargetHandler, permitiendo una gestión más robusta de los formularios. Las nuevas propiedades incluyen:
 
-- minLength: Verifica que la longitud del valor ingresado sea al menos la mínima especificada.
-- maxLength: Verifica que la longitud del valor ingresado no exceda la máxima especificada.
-- matches: Permite validar que el valor de un campo coincida con el valor de otro campo (por ejemplo, para confirmar contraseñas).
-- matchMessage: Proporciona un mensaje de error personalizado si los valores no coinciden, mejorando la claridad para el usuario.
-- min y max: Verifican que el valor ingresado esté dentro de un rango específico, asegurando que los datos sean válidos (por ejemplo, para la edad).
-- checked y checkedMessage: Aseguran que los checkboxes estén marcados y proporcionan mensajes claros si no lo están.
-- Validación para Botones de Radio: Se ha implementado la propiedad selected, que verifica que al menos un botón de radio en un grupo esté seleccionado, junto con un mensaje de error personalizado.
+- `minLength`: Verifica que la longitud del valor ingresado sea al menos la mínima especificada.
+- `maxLength`: Verifica que la longitud del valor ingresado no exceda la máxima especificada.
+- `matches`: Permite validar que el valor de un campo coincida con el valor de otro campo (por ejemplo, para confirmar contraseñas).
+- `matchMessage`: Proporciona un mensaje de error personalizado si los valores no coinciden, mejorando la claridad para el usuario.
+- `min y max`: Verifican que el valor ingresado esté dentro de un rango específico, asegurando que los datos sean válidos (por ejemplo, para la edad).
+- `checked y checkedMessage`: Aseguran que los checkboxes estén marcados y proporcionan mensajes claros si no lo están.
+- `Validación para Botones de Radio`: Se ha implementado la propiedad selected, que verifica que al menos un botón de radio en un grupo esté seleccionado, junto con un mensaje de error personalizado.
 
 ANTES ❌
 ```jsx
