@@ -6,6 +6,28 @@ Todas las novedades de este proyecto se documentan en este archivo.
 
 ---
 
+## [1.1.0] - 2024-08-04
+### ✨ Mejorado
+- **Validaciones Personalizadas**:
+  - Se ha implementado la capacidad de definir propiedades de validación para los campos del formulario:
+    - **`required`**: Indica si el campo es obligatorio.
+    - **`requiredMessage`**: Mensaje de error personalizado para campos obligatorios.
+    - **`pattern`**: Expresión regular para validar el formato del campo.
+    - **`patternMessage`**: Mensaje de error personalizado para validación de patrón.
+  - Esto mejora significativamente la experiencia del usuario al proporcionar mensajes claros sobre los requisitos de entrada en cada campo.
+
+### 📚 Documentación
+- **Documentación Actualizada**:
+  - Se han agregado ejemplos claros en la documentación para facilitar la implementación de las nuevas características de validación.
+
+### 🐛 Correcciones
+- Se realizaron diversas correcciones menores para mejorar la estabilidad y el rendimiento del hook.
+
+### 🚀 Recomendaciones
+Se recomienda a todos los usuarios actualizar a la versión 1.1.0 para aprovechar las mejoras en la validación y la experiencia del usuario.
+
+---
+
 ## [1.0.27] - 2024-07-29
 ### ✨ Mejorado
 - **Persistencia del Estado**: Se implementó la capacidad de guardar el estado del formulario en `localStorage` o `sessionStorage`, permitiendo a los usuarios retomar formularios incompletos.
@@ -108,5 +130,3 @@ Todas las novedades de este proyecto se documentan en este archivo.
 - Creación inicial del hook `useTargetHandler`.
 - Soporte para la gestión de estado en formularios.
 - Configuración básica y pruebas iniciales.
-
----
