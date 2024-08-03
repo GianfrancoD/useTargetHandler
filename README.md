@@ -92,7 +92,7 @@ const [target, setTarget, handleSubmit, errors] = useTargetHandler({
     name="nombre"
   />
   {/* Se agregó la validación de errores para el campo nombre */}
-  {errors.nombre && <span>{errors.nombre}</span>}
+  {errors.nombre && <span>{errors.nombre.message}</span>}
 
   <input
     type="text"
@@ -102,7 +102,7 @@ const [target, setTarget, handleSubmit, errors] = useTargetHandler({
     name="apellido"
   />
   {/* Se agregó la validación de errores para el campo apellido */}
-  {errors.apellido && <span>{errors.apellido}</span>}
+  {errors.apellido && <span>{errors.apellido.message}</span>}
 
   <button>Enviar</button>
 </form>
