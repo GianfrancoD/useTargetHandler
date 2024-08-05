@@ -92,6 +92,10 @@ const [target, handleTarget, handleSubmit, errors] = useTargetHandler(
         checked: true, // Nuevo
         checkedMessage: "Debes aceptar los términos y condiciones", // Nuevo
       },
+      ciudad: {
+        selected: true, // Nuevo
+        selectedMessage: "Debes seleccionar ciudad", // Nuevo
+      },
     }
   );
 ```
@@ -124,6 +128,15 @@ VALIDACION DE CHECKBOX Y RADIO ✅
         <label>Femenino</label>
 
         {errors.gender && <span>{errors.gender.message}</span>}
+
+        <select name="ciudad" value={target.ciudad} onChange={handleTarget}>
+         <option value="">Selecciona una ciudad</option>
+         <option value="madrid">Madrid</option>
+         <option value="barcelona">Barcelona</option>
+         <option value="valencia">Valencia</option>
+       </select>
+
+       {errors.ciudad && <span>{errors.ciudad.message}</span>}
 ```
 
 
