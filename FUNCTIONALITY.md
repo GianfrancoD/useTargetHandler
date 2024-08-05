@@ -96,9 +96,12 @@ const [target, handleTarget, handleSubmit, errors] = useTargetHandler(
         selected: true, // Nuevo
         selectedMessage: "Debes seleccionar ciudad", // Nuevo
       },
-    }
+    },
+     "local",
+    "formData"
   );
 ```
+
 VALIDACION DE CHECKBOX Y RADIO ✅
 ```jsx
 <input
