@@ -81,6 +81,7 @@ const Formulario = () => {
       age: "",
       terms: false,
       gender: "",
+      ciudad: "",
     },
     {
       nombre: {
@@ -123,6 +124,10 @@ const Formulario = () => {
       terms: {
         checked: true,
         checkedMessage: "Debes aceptar los términos y condiciones",
+      },
+      ciudad: {
+         selected: true,
+         selectedMessage: "Debes seleccionar ciudad",
       },
     },
       "local",
@@ -200,6 +205,14 @@ const Formulario = () => {
         />
         <label>Acepto los términos y condiciones</label>
         {errors.terms && <span>{errors.terms.message}</span>}
+
+      <select name="ciudad" value={target.ciudad} onChange={handleTarget}>
+          <option value="">Selecciona una ciudad</option>
+          <option value="madrid">Madrid</option>
+          <option value="barcelona">Barcelona</option>
+          <option value="valencia">Valencia</option>
+        </select>
+        {errors.ciudad && <span>{errors.ciudad.message}</span>}
 
         <input
           type="radio"
