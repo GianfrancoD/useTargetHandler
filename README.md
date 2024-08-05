@@ -63,6 +63,8 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
 - ### Destacado
   - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`.
   - el valor de `value={target.nombre}` debe ser igual a `name="nombre"` y del estado `{nombre: "", apellido: ""}` y asi le pueda funcionar el formularios.
+  - Cuando configuras un campo en tu formulario y estableces `required: true`, estás indicando que este campo es obligatorio. Esto no solo activa la validación para asegurarte de que el usuario complete el campo, sino que también permite el uso de otras reglas de validación relacionadas, como:
+    - `pattern`, `patternMessage`, `requiredMessage`, `minLength`, `minLength`,  `maxLength`, `matches`, `matchMessage`, `min`, `max`, `checked`, `checkedMessage`, `selected`, `selectedMessage`
 
  NUEVO 🆕 - 
 [FUNCTIONALITY](FUNCTIONALITY.md) - [CHANGELOG](./CHANGELOG.md) 
