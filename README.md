@@ -39,6 +39,9 @@ Ver los cambios realizados en el Hook [CHANGELOG](./CHANGELOG.md)
 - **`Validación de campos`**: El hook permite implementar validaciones personalizadas para cada campo del formulario, asegurando que los datos ingresados por el usuario cumplan con los requisitos establecidos.
 - **`Persistencia del Estado y Almacenamiento Condicional`**:
 El hook guarda el estado del formulario en localStorage o sessionStorage, permitiendo a los usuarios retomar formularios incompletos.
+- **`Declaración de Variables de Entorno en la Nube`**: Declarar variables de entorno directamente en la nube, lo que permite una configuración más segura y flexible de tu aplicación. Esto simplifica la gestión de configuraciones en distintos entornos sin necesidad de modificar el código fuente.
+- **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva.
+
 
 ### Ventajas
 
@@ -61,7 +64,7 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
    - Almacena los errores de validación.
 
 - ### Destacado
-  - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`.
+  - Los valores `target` y `setTarget` lo puedes modificar con el valor que mas se le sea de su agrado cuando se le llama, no es obligatoriamente `target` y `setTarget`. ( usar `handlerTarget` ).
   - el valor de `value={target.nombre}` debe ser igual a `name="nombre"` y del estado `{nombre: "", apellido: ""}` y asi le pueda funcionar el formularios.
   - Cuando configuras un campo en tu formulario y estableces `required: true`, estás indicando que este campo es obligatorio. Esto no solo activa la validación para asegurarte de que el usuario complete el campo, sino que también permite el uso de otras reglas de validación relacionadas, como:
     - `pattern`, `patternMessage`, `requiredMessage`, `minLength`, `minLength`,  `maxLength`, `matches`, `matchMessage`, `min`, `max`, `checked`, `checkedMessage`, `selected`, `selectedMessage`
@@ -244,46 +247,58 @@ const Formulario = () => {
 
 ```
 
-### Implementando useTargetHandler con useHttpRequest 🔥
+### Implementando useTargetHandler con useHttpRequest 🔥 - NUEVO 🆕
 
 ```jsx
 import { useTargetHandler } from "usetargethandler";
-import { useHttpRequest } from "usehttprequest";
 
 export const Formulario = () => {
-  const [target, setTarget, handleSubmit] = useTargetHandler({
+  const [target, handleTarget handleSubmit, errors, { apiCall, apiResponse, userFound, error }, apiUrl] = useTargetHandler({
     nombre: "",
     apellido: "",
   });
-  const { apiCall, apiResponse, userFound } = useHttpRequest();
 
-  const handleFormSubmit = (target) => {
-    apiCall("create", undefined, target, "post", "application/json");
+  const onSubmit = async (data) => {
+    try {
+      // Realiza la llamada a la API
+      await apiCall("users", 1, data, "post", "application/json", { page: 1, limit: 10 }); // de ejemplo
+      if (userFound) {
+        console.log("Usuario creado:", apiResponse);
+      } else {
+        console.error("Error al crear usuario:", error);
+      }
+    } catch (err) {
+      console.error("Error en la llamada a la API:", err);
+    }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleFormSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label></label>
         <input
           type="text"
           value={target.nombre}
           pattern="[a-zA-Z]+"
           placeholder="nombre"
-          onChange={setTarget}
+          onChange={handleTarget}
           name="nombre"
           required
         />
+      {errors.nombre && <span>{errors.nombre.message}</span>}
+
         <label></label>
         <input
           type="text"
           value={target.apellido}
           pattern="[a-zA-Z]+"
           placeholder="apellido"
-          onChange={setTarget}
+          onChange={handleTarget}
           name="apellido"
           required
         />
+      {errors.apellido && <span>{errors.apellido.message}</span>}
+
         <button>Enviar</button>
       </form>
 
