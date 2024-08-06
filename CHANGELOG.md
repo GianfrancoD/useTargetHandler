@@ -6,152 +6,137 @@ Todas las novedades de este proyecto se documentan en este archivo.
 
 ---
 
-## [1.2.0] - 2024-08-03
+## [1.2.1] - 2024-08-06
 ### ✨ Mejorado
-- **Nuevas Validaciones**:
-  - Se han agregado las siguientes propiedades de validación para los campos del formulario:
-    - **`minLength`**: Verifica que la longitud del valor ingresado sea al menos la mínima especificada.
-    - **`maxLength`**: Verifica que la longitud del valor ingresado no exceda la máxima especificada.
-    - **`matches`**: Permite validar que el valor de un campo coincida con el valor de otro campo (por ejemplo, para confirmar contraseñas).
-    - **`matchMessage`**: Proporciona un mensaje de error personalizado si los valores no coinciden, mejorando la claridad para el usuario.
-    - **`min` y `max`**: Verifican que el valor ingresado esté dentro de un rango específico, asegurando que los datos sean válidos (por ejemplo, para la edad).
-    - **`checked` y `checkedMessage`**: Aseguran que los checkboxes estén marcados y proporcionan mensajes claros si no lo están.
-  - **Validación para Botones de Radio**: Se ha implementado la propiedad `selected`, que verifica que al menos un botón de radio en un grupo esté seleccionado, junto con un mensaje de error personalizado.
-- Estas mejoras enriquecen la funcionalidad del formulario y optimizan la experiencia del usuario al proporcionar validaciones claras y efectivas.
+- **Declaración de Variables de Entorno en la Nube**: Se ha añadido la capacidad de declarar variables de entorno directamente en la nube, permitiendo una configuración más flexible y segura de la aplicación.
+  
+- **Integración con `useHttpRequest`**: `useTargetHandler` ahora se integra de manera más efectiva con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas adecuadamente.
+
+- **Función de Validación Mejorada**: La función ha sido optimizada para manejar múltiples tipos de validaciones, incluyendo:
+  - Validaciones de longitud mínima y máxima.
+  - Validaciones de patrones de expresión regular.
+  - Coincidencias entre campos.
+  - Mensajes de error personalizados para cada regla.
 
 ### 📚 Documentación
-- **Documentación Actualizada**:
-  - Se han agregado ejemplos claros en la documentación para facilitar la implementación de las nuevas características de validación.
+- **Documentación Actualizada**: Se han agregado ejemplos claros en la documentación para facilitar la implementación de las nuevas características de validación y el uso de variables de entorno.
 
 ### 🐛 Correcciones
 - Se realizaron diversas correcciones menores para mejorar la estabilidad y el rendimiento del hook.
 
 ### 🚀 Recomendaciones
-Se recomienda a todos los usuarios actualizar a la versión 1.2.0 para aprovechar las nuevas funcionalidades de validación y mejorar la experiencia del usuario en sus formularios.
+Se recomienda a todos los usuarios actualizar a la versión 1.2.1 para aprovechar las nuevas funcionalidades de validación, la integración con `useHttpRequest` y la capacidad de declarar variables de entorno en la nube.
+
+---
+
+## [1.2.0] - 2024-08-03
+### ✨ Mejorado
+- **Nuevas Validaciones**: Se han agregado propiedades de validación para los campos del formulario, mejorando la funcionalidad y la experiencia del usuario.
+
+### 📚 Documentación
+- **Documentación Actualizada**: Se han agregado ejemplos claros en la documentación para facilitar la implementación de las nuevas características de validación.
+
+### 🐛 Correcciones
+- Se realizaron diversas correcciones menores para mejorar la estabilidad y el rendimiento del hook.
+
+### 🚀 Recomendaciones
+Se recomienda a todos los usuarios actualizar a la versión 1.2.0 para aprovechar las nuevas funcionalidades de validación.
 
 ---
 
 ## [1.1.0] - 2024-08-02
 ### ✨ Mejorado
-- **Validaciones Personalizadas**:
-  - Se ha implementado la capacidad de definir propiedades de validación para los campos del formulario:
-    - **`required`**: Indica si el campo es obligatorio.
-    - **`requiredMessage`**: Mensaje de error personalizado para campos obligatorios.
-    - **`pattern`**: Expresión regular para validar el formato del campo.
-    - **`patternMessage`**: Mensaje de error personalizado para validación de patrón.
-  - Esto mejora significativamente la experiencia del usuario al proporcionar mensajes claros sobre los requisitos de entrada en cada campo.
+- **Validaciones Personalizadas**: Se ha implementado la capacidad de definir propiedades de validación para los campos del formulario, mejorando la experiencia del usuario.
 
 ### 📚 Documentación
-- **Documentación Actualizada**:
-  - Se han agregado ejemplos claros en la documentación para facilitar la implementación de las nuevas características de validación.
+- **Documentación Actualizada**: Se han agregado ejemplos claros en la documentación para facilitar la implementación de las nuevas características de validación.
 
 ### 🐛 Correcciones
 - Se realizaron diversas correcciones menores para mejorar la estabilidad y el rendimiento del hook.
 
 ### 🚀 Recomendaciones
-Se recomienda a todos los usuarios actualizar a la versión 1.1.0 para aprovechar las mejoras en la validación y la experiencia del usuario.
+Se recomienda a todos los usuarios actualizar a la versión 1.1.0 para aprovechar las mejoras en la validación.
 
 ---
 
 ## [1.0.27] - 2024-07-29
 ### ✨ Mejorado
-- **Persistencia del Estado**: Se implementó la capacidad de guardar el estado del formulario en `localStorage` o `sessionStorage`, permitiendo a los usuarios retomar formularios incompletos.
-- **Lógica de Almacenamiento Condicional**: Se mejoró la lógica para asegurarse de que los datos solo se guarden en `localStorage` o `sessionStorage` si se especifica un tipo de almacenamiento válido. Si no se proporciona un tipo, el formulario no guardará datos en el almacenamiento.
+- **Persistencia del Estado**: Se implementó la capacidad de guardar el estado del formulario en `localStorage` o `sessionStorage`.
 
 ### Cambios en la API
-- **Cambio en la Firma de `useTargetHandler`**: Se modificó la firma de la función `useTargetHandler` para incluir un nuevo parámetro `storageType`, que permite especificar el tipo de almacenamiento (local o sesión).
+- **Cambio en la Firma de `useTargetHandler`**: Se modificó la firma de la función para incluir un nuevo parámetro `storageType`.
 
 ---
 
 ## [1.0.26] - 2024-07-26
 ### ✨ Mejorado
-- **Manejo de Errores**: Se mejoró el manejo de errores en el hook `useTargetHandler`, permitiendo que los mensajes de error se establezcan de manera más clara y concisa, y asegurando que los inputs controlados no cambien a un estado no controlado.
+- **Manejo de Errores**: Se mejoró el manejo de errores en el hook `useTargetHandler`.
 
 ---
 
 ## [1.0.10] - 2024-07-24
 ### ➕ Agregado
-- **Prueba de versión**: Se realizaron pruebas exhaustivas de la nueva funcionalidad y se ajustaron detalles menores en el código.
+- **Prueba de versión**: Se realizaron pruebas exhaustivas de la nueva funcionalidad.
 
 ---
 
 ## [1.0.9] - 2024-07-24
 ### ➕ Agregado
-- **Soporte para validación avanzada de formularios**: Implementa un sistema de validación más robusto que permite validar múltiples campos al mismo tiempo, mostrar mensajes de error personalizados y manejar validaciones asíncronas.
+- **Soporte para validación avanzada de formularios**: Implementa un sistema de validación más robusto.
 
 ### ✨ Mejorado
-- **Mejoras en el manejo de errores**: Implementa un mejor manejo de errores en el hook, permitiendo a los usuarios manejar errores de forma personalizada y proporcionar mensajes de error más significativos.
-- **Rendimiento optimizado**: Realiza optimizaciones en la lógica del hook para mejorar el rendimiento, especialmente en formularios grandes o con múltiples campos.
-- **Documentación actualizada**: Actualiza la documentación del hook para incluir información sobre las nuevas características, ejemplos de uso y casos de uso avanzados.
-
-### 🐛 Corregido
-- **Corrección de errores en la gestión de formularios anidados**: Soluciona cualquier problema que pueda surgir al usar el hook en formularios anidados o en componentes reutilizables.
-- **Mejora en la gestión de eventos de formulario**: Ajusta la lógica del hook para manejar de manera más robusta los eventos de formulario, como el envío del formulario y el restablecimiento del estado.
+- **Mejoras en el manejo de errores**: Implementa un mejor manejo de errores en el hook.
 
 ---
 
 ## [1.0.8] - 2024-07-20
 ### 🐛 Corregido
 - Solución de errores en la gestión de eventos en el hook `useTargetHandler`.
-- Mejora en la validación de los campos del formulario.
 
 ---
 
 ## [1.0.7] - 2024-07-15
 ### ➕ Agregado
 - Implementación de soporte para manejar formularios más complejos.
-- Mejora en la documentación sobre el uso de `handleSubmit`.
-
-### 🐛 Corregido
-- Ajustes en la lógica de manejo de cambios en los inputs.
 
 ---
 
 ## [1.0.6] - 2024-07-10
 ### 🐛 Corregido
 - Corrección de errores en la lógica de reinicio del estado en `handleSubmit`.
-- Mejora en la gestión de tipos de datos en el estado.
 
 ---
 
 ## [1.0.5] - 2024-07-05
 ### ➕ Agregado
 - Implementación de un sistema de validación básica para los inputs del formulario.
-- Mejora en la función `handleTarget` para permitir la gestión de múltiples inputs.
 
 ---
 
 ## [1.0.4] - 2024-06-30
 ### 🐛 Corregido
 - Corrección de errores menores en la gestión de eventos de entrada.
-- Ajustes en la lógica de actualización del estado.
 
 ---
 
 ## [1.0.3] - 2024-06-25
 ### ➕ Agregado
 - Mejora en la documentación del código y ejemplos de uso.
-- Implementación de pruebas unitarias para garantizar la funcionalidad.
 
 ---
 
 ## [1.0.2] - 2024-06-20
 ### ➕ Agregado
 - Soporte para manejar múltiples campos en el estado del formulario.
-- Mejora en la función `handleSubmit` para incluir validaciones adicionales.
 
 ---
 
 ## [1.0.1] - 2024-06-15
 ### ➕ Agregado
 - Primera versión del hook `useTargetHandler`.
-- Funcionalidad básica para manejar el estado de formularios en componentes de React.
-- Implementación de funciones para manejar cambios en los inputs y enviar datos.
 
 ---
 
 ## [1.0.0] - 2024-06-10
 ### ➕ Agregado
 - Creación inicial del hook `useTargetHandler`.
-- Soporte para la gestión de estado en formularios.
-- Configuración básica y pruebas iniciales
