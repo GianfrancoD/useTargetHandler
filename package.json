@@ -1,6 +1,6 @@
 {
   "name": "usetargethandler",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": false,
   "description": "use-target-hook te permite manejar formularios de manera sencilla y eficiente, sin necesidad de escribir código repetitivo.",
   "keywords": [
