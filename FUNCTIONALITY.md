@@ -1,4 +1,4 @@
-#Versión 1.2.0: Nuevas Validaciones y Mejoras en el Formulario
+# Versión 1.2.0: Nuevas Validaciones y Mejoras en el Formulario
 
 Nuevas Validaciones y Mejoras 🚀
 Se han añadido nuevas funcionalidades al hook useTargetHandler, permitiendo una gestión más robusta de los formularios. Las nuevas propiedades incluyen:
