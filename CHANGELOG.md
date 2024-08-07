@@ -1,8 +1,19 @@
-# 📝 Changelog
+## [1.2.2] - 2024-08-07
+### ✨ Mejorado
+- **Validación de Edad**: Se ha mejorado la validación de la edad en el hook `useTargetHandler`. Ahora se verifica que el valor de la edad sea un número y esté dentro del rango especificado.
 
-Todas las novedades de este proyecto se documentan en este archivo.
+- **Manejo de Errores en el Envío**: Se ha agregado un mejor manejo de errores en la parte donde se envían los datos en `handleSubmit`. Ahora se capturan y manejan adecuadamente los errores que puedan ocurrir durante el proceso de envío.
 
-## [Unreleased]
+- **Optimización de Validaciones**: Se han dividido las validaciones en funciones más pequeñas para cada tipo de validación, mejorando la legibilidad y mantenibilidad del código.
+
+### 📚 Documentación
+- **Documentación Actualizada**: Se han agregado ejemplos claros en la documentación para facilitar la implementación de las mejoras en la validación de edad y el manejo de errores en el envío.
+
+### 🐛 Correcciones
+- Se realizaron diversas correcciones menores para mejorar la estabilidad y el rendimiento del hook.
+
+### 🚀 Recomendaciones
+Se recomienda a todos los usuarios actualizar a la versión 1.2.2 para aprovechar las mejoras en la validación de edad, el manejo de errores en el envío y la optimización de las validaciones.
 
 ---
 
