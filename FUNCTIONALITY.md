@@ -1,3 +1,47 @@
+# Versión 1.2.1: Innovaciones en la Gestión de Formularios y Validaciones
+
+## Innovaciones y Mejoras 🚀
+
+La versión 1.2.1 del hook `useTargetHandler` introduce funcionalidades avanzadas que transforman la forma en que gestionas formularios en tus aplicaciones React.
+
+### 🌟 Declaración de Variables de Entorno en la Nube
+
+Ahora puedes declarar variables de entorno directamente en la nube, lo que permite una configuración más flexible y segura. Esto se logra mediante la función `getEnvVar`, que facilita la obtención de la URL base de la API sin necesidad de modificar el código fuente.
+
+### 🔗 Integración con `useHttpRequest`
+
+Se ha mejorado la integración con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario. Esto simplifica el proceso de manejo de datos y mejora la interacción con el backend.
+
+### ✅ Función de Validación Mejorada
+
+La función ha sido optimizada para ofrecer una gestión más robusta de las validaciones, incluyendo:
+- Validaciones de longitud mínima y máxima.
+- Validaciones de patrones de expresión regular.
+- Verificaciones de coincidencias entre campos.
+- Mensajes de error personalizados para cada regla.
+
+### 📚 Ejemplo de Uso
+
+```jsx
+const { target, handleTarget, handleSubmit, errors, { apiCall, apiResponse, userFound, error }, apiUrl } = useTargetHandler()
+  {
+    nombre: { required: true, requiredMessage: "El nombre es obligatorio" },
+    apellido: { required: true, pattern: /^[a-zA-Z]+$/, patternMessage: "El apellido solo debe contener letras" }
+  },
+  "local",
+  "formData"
+);
+```
+
+```jsx
+const { target, handleTarget, handleSubmit, errors, { apiCall, apiResponse, userFound, error, params }, apiUrl } = useTargetHandler()
+apiCall("create", 1, target, "post", "application/json", { page: 1, limit: 10 });
+-
+'apiCall(endpoint, id, data, method, http, params)'
+```
+
+
+
 # Versión 1.2.0: Nuevas Validaciones y Mejoras en el Formulario
 
 Nuevas Validaciones y Mejoras 🚀
