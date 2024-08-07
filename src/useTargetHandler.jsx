@@ -1,39 +1,37 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { useHttpRequest } from "usehttprequest";
 
-const validateRules = (name, value, rules, target) => {
-  return rules.required
-    ? (rules.isRequired && typeof value !== "string") || !value.trim()
-      ? rules.requiredMessage || `${name} es obligatorio 🚨`
-      : !rules.isRequired && typeof value === "string" && !value.trim()
-      ? null
-      : rules.pattern && !rules.pattern.test(value)
-      ? rules.patternMessage || `${name} no es válido ❌`
-      : rules.minLength && value.length < rules.minLength
-      ? rules.minLengthMessage ||
-        `${name} debe tener al menos ${rules.minLength} caracteres`
-      : rules.maxLength && value.length > rules.maxLength
-      ? rules.maxLengthMessage ||
-        `${name} no puede exceder ${rules.maxLength} caracteres`
-      : rules.matches && value !== target[rules.matches]
-      ? rules.matchMessage || `${name} no coincide`
-      : typeof value === "string" &&
-        value.length > 0 &&
-        rules.min &&
-        value.length < rules.min
-      ? rules.minMessage || `${name} debe ser al menos ${rules.min}`
-      : typeof value === "string" &&
-        value.length > 0 &&
-        rules.max &&
-        value.length > rules.max
-      ? rules.maxMessage || `${name} no puede ser mayor que ${rules.max}`
-      : rules.checked && !value
-      ? rules.checkedMessage || `Debes aceptar ${name}`
-      : rules.selected && !value
-      ? rules.selectedMessage || `Debes seleccionar ${name}`
-      : ""
-    : "";
+const validateRules = async (name, value, rules, target) => {
+  return new Promise((resolve) => {
+    resolve(
+      rules.required
+        ? (rules.isRequired && typeof value !== "string") || !value.trim()
+          ? rules.requiredMessage || `${name} es obligatorio 🚨`
+          : !rules.isRequired && typeof value === "string" && !value.trim()
+          ? null
+          : rules.pattern && !rules.pattern.test(value)
+          ? rules.patternMessage || `${name} no es válido ❌`
+          : rules.minLength && value.length < rules.minLength
+          ? rules.minLengthMessage ||
+            `${name} debe tener al menos ${rules.minLength} caracteres`
+          : rules.maxLength && value.length > rules.maxLength
+          ? rules.maxLengthMessage ||
+            `${name} no puede exceder ${rules.maxLength} caracteres`
+          : rules.matches && value !== target[rules.matches]
+          ? rules.matchMessage || `${name} no coincide`
+          : rules.min && value < rules.min
+          ? rules.minMessage || `${name} debe ser al menos ${rules.min}`
+          : rules.max && value > rules.max
+          ? rules.maxMessage || `${name} no puede ser mayor que ${rules.max}`
+          : rules.checked && !value
+          ? rules.checkedMessage || `Debes aceptar ${name}`
+          : rules.selected && !value
+          ? rules.selectedMessage || `Debes seleccionar ${name}`
+          : ""
+        : ""
+    );
+  });
 };
 
 /**
@@ -139,16 +137,16 @@ const useTargetHandler = (
 
   const [errors, setErrors] = useState({});
 
-  const handleTarget = (e) => {
+  const handleTarget = useCallback(async (e) => {
     const { name, type, checked, value } = e.target;
     if (!name) return;
     setTarget((prevForm) => ({
       ...prevForm,
       [name]: type === "checkbox" ? checked : value,
     }));
-  };
+  }, []);
 
-  const handleSubmit = (callback) => (e) => {
+  const handleSubmit = useCallback((callback) => async (e) => {
     e.preventDefault();
     const newError = Object.entries(target).reduce((acc, [key, value]) => {
       typeof value === "string" && value.trim() === "" && !key.includes("terms")
@@ -157,13 +155,15 @@ const useTargetHandler = (
       return acc;
     }, {});
 
-    Object.entries(target).forEach(([key, value]) => {
-      const rules = validationRules[key] || {};
-      const error = validateRules(key, value, rules, target);
-      if (error) {
-        newError[key] = { message: error };
-      }
-    });
+    await Promise.all(
+      Object.entries(target).map(async ([key, value]) => {
+        const rules = validationRules[key] || {};
+        const error = await validateRules(key, value, rules, target);
+        if (error) {
+          newError[key] = { message: error };
+        }
+      })
+    );
 
     Object.keys(newError).length > 0
       ? (setErrors(newError), console.log("Errores encontrados:", newError))
@@ -174,7 +174,7 @@ const useTargetHandler = (
           setErrors({});
           callback(target);
         })();
-  };
+  });
 
   return [
     target,
