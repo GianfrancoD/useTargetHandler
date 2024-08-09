@@ -41,6 +41,7 @@ Ver los cambios realizados en el Hook [CHANGELOG](./CHANGELOG.md)
 El hook guarda el estado del formulario en localStorage o sessionStorage, permitiendo a los usuarios retomar formularios incompletos.
 - **`Declaración de Variables de Entorno en la Nube`**: Declarar variables de entorno directamente en la nube, lo que permite una configuración más segura y flexible de tu aplicación. Esto simplifica la gestión de configuraciones en distintos entornos sin necesidad de modificar el código fuente.
 - **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva.
+- **`Protección CSRF en useTargetHandler`**: Al activar `enableCSRF=true`, el hook useTargetHandler incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE) a través de `useHttpRequest`, protegiendo así contra ataques maliciosos.
 
 
 ### Ventajas
