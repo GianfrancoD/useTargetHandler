@@ -137,7 +137,8 @@ const Formulario = () => {
       },
     },
       "local",
-      "formData"
+      "formData",
+      true  // Activar Protección CSRF
   );
 
   const onSubmit = () => {
