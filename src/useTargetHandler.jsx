@@ -121,9 +121,11 @@ const useTargetHandler = (
   },
   validationRules = {},
   storageType = null,
-  storageKey = "formData"
+  storageKey = "formData",
+  enableCSRF = false
 ) => {
-  const { apiCall, apiResponse, userFound, error, params } = useHttpRequest();
+  const { apiCall, apiResponse, userFound, error, params } =
+    useHttpRequest(enableCSRF);
   const storage =
     storageType == "local"
       ? localStorage
@@ -192,6 +194,7 @@ useTargetHandler.prototype = {
   validationRules: PropTypes.object,
   storageType: PropTypes.oneOf(["session", "local"]),
   storageKey: PropTypes.string,
+  enableCSRF: PropTypes.bool,
 };
 
 useTargetHandler.prototype.handleTarget.propTypes = {
