@@ -1,3 +1,52 @@
+# Versión 1.2.4: Mejoras en la Seguridad y Gestión de Formularios
+
+## Innovaciones y Mejoras 🚀
+
+La versión 1.2.4 del hook `useTargetHandler` introduce funcionalidades avanzadas que transforman la forma en que gestionas formularios en tus aplicaciones React, con un enfoque especial en la seguridad.
+
+### 🌟 Limitación de Tasa (Rate Limiting)
+
+La nueva versión implementa una funcionalidad de limitación de tasa que previene el envío excesivo de solicitudes en un corto período de tiempo. Ahora puedes establecer un intervalo de tiempo mínimo entre envíos de formularios, mejorando la experiencia del usuario y la estabilidad del servidor. Simplemente ajusta el parámetro `rateLimit` al usar el hook.
+
+### 🛡️ Sanitización de Entradas
+
+Se ha mejorado la función de sanitización de entradas para proteger contra ataques de inyección de código. La función `sanitizeInput` elimina etiquetas HTML y scripts potencialmente dañinos de los valores de entrada, asegurando que solo se almacenen datos limpios y seguros. Esto es crucial para prevenir ataques de Cross-Site Scripting (XSS).
+
+### 🚫 Protección contra Inyecciones SQL
+
+Aunque el hook en sí no interactúa directamente con bases de datos, la sanitización de entradas ayuda a prevenir inyecciones SQL al asegurar que los datos que se envían a las API están debidamente filtrados. Esto es especialmente importante cuando se trabaja con APIs que pueden realizar operaciones de base de datos.
+
+ANTES ❌
+```jsx
+const { target, handleTarget, handleSubmit, errors, { apiCall, apiResponse, userFound, error }, apiUrl } = useTargetHandler(
+  {
+    nombre: { required: true, requiredMessage: "El nombre es obligatorio" },
+    apellido: { required: true, pattern: /^[a-zA-Z]+$/, patternMessage: "El apellido solo debe contener letras" }
+  },
+    "local",
+    "formData",
+    true,
+    2000
+ )
+);
+```
+AHORA ✅
+```jsx
+const { target, handleTarget, handleSubmit, errors, { apiCall, apiResponse, userFound, error }, apiUrl } = useTargetHandler(
+  {
+    nombre: { required: true, requiredMessage: "El nombre es obligatorio" },
+    apellido: { required: true, pattern: /^[a-zA-Z]+$/, patternMessage: "El apellido solo debe contener letras" }
+  },
+  { storageType: "session", storageKey: "forms" },
+  { enableCSRF: true, rateLimit: 2000 }
+ )
+);
+```
+
+
+
+
+
 # Versión 1.2.1: Innovaciones en la Gestión de Formularios y Validaciones
 
 ## Innovaciones y Mejoras 🚀
