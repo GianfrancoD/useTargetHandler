@@ -1,3 +1,33 @@
+## [1.2.4] - 2024-08-10
+
+### ✨ Mejoras y Nuevas Funcionalidades 🚀
+
+#### 🌟 Limitación de Tasa (Rate Limiting)
+- **Descripción**: Se ha implementado una funcionalidad de limitación de tasa que previene el envío excesivo de solicitudes en un corto período de tiempo.
+- **Funcionalidad**: Ahora puedes establecer un intervalo de tiempo mínimo entre envíos de formularios, lo que mejora la experiencia del usuario y la estabilidad del servidor.
+- **Uso**: Ajusta el parámetro `rateLimit` al utilizar el hook para definir el tiempo de espera entre envíos, evitando la sobrecarga del servidor y mejorando la gestión de formularios.
+
+#### 🛡️ Sanitización de Entradas
+- **Descripción**: La función de sanitización de entradas ha sido mejorada para proteger contra ataques de inyección de código.
+- **Funcionalidad**: La función `sanitizeInput` ahora elimina etiquetas HTML y scripts potencialmente dañinos de los valores de entrada, asegurando que solo se almacenen datos limpios y seguros.
+- **Impacto**: Esto es crucial para prevenir ataques de Cross-Site Scripting (XSS), garantizando que los datos procesados en el frontend no contengan contenido malicioso.
+
+#### 🚫 Protección contra Inyecciones SQL
+- **Descripción**: Se ha implementado una sanitización de entradas que ayuda a prevenir inyecciones SQL.
+- **Funcionalidad**: Asegura que los datos enviados a las API estén debidamente filtrados, lo que es especialmente importante al trabajar con APIs que pueden realizar operaciones de base de datos.
+- **Impacto**: Mejora la seguridad general de la aplicación al proteger contra posibles vulnerabilidades, asegurando que las entradas de los usuarios no comprometan la integridad de la base de datos.
+
+### 📚 Documentación
+- **Documentación Actualizada**: Se han agregado ejemplos claros en la documentación para facilitar la implementación de las nuevas funcionalidades de seguridad y gestión de formularios.
+
+### 🐛 Correcciones
+- Se realizaron diversas correcciones menores para mejorar la estabilidad y el rendimiento del hook.
+
+### 🚀 Recomendaciones
+Se recomienda a todos los usuarios actualizar a la versión 1.2.4 para aprovechar las mejoras en la seguridad, la gestión de formularios y la protección contra inyecciones SQL.
+
+-----
+
 ## [1.2.2] - 2024-08-07
 ### ✨ Mejorado
 - **Validación de Edad**: Se ha mejorado la validación de la edad en el hook `useTargetHandler`. Ahora se verifica que el valor de la edad sea un número y esté dentro del rango especificado.
