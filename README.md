@@ -2,7 +2,7 @@
 ![licence](https://img.shields.io/github/license/GianfrancoD/useTargetHandler)
 ![Badge en Desarollo](https://img.shields.io/badge/Status-En%20Desarrollo-green)
 [![npm downloads](https://img.shields.io/npm/dt/usetargethandler.svg)](https://www.npmjs.com/package/usetargethandler)
-![commit](https://img.shields.io/github/commits-since/GianfrancoD/useTargetHandler/1.2.2)
+![commit](https://img.shields.io/github/commits-since/GianfrancoD/useTargetHandler/1.2.4)
 ![npm](https://img.shields.io/npm/v/usetargethandler)
 ![GitHub release](https://img.shields.io/github/release/GianfrancoD/usetargethandler)
 
