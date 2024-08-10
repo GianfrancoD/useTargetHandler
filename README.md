@@ -42,16 +42,40 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
 - **`Declaración de Variables de Entorno en la Nube`**: Declarar variables de entorno directamente en la nube, lo que permite una configuración más segura y flexible de tu aplicación. Esto simplifica la gestión de configuraciones en distintos entornos sin necesidad de modificar el código fuente.
 - **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva.
 - **`Protección CSRF en useTargetHandler`**: Al activar `enableCSRF=true`, el hook useTargetHandler incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE) a través de `useHttpRequest`, protegiendo así contra ataques maliciosos.
+- **`Limitación de Tasa (Rate Limiting)`**: La nueva versión implementa una funcionalidad de limitación de tasa que previene el envío excesivo de solicitudes en un corto período de tiempo. Ahora puedes establecer un intervalo de tiempo mínimo entre envíos de formularios, mejorando la experiencia del usuario y la estabilidad del servidor. Simplemente ajusta el parámetro `rateLimit` al usar el hook.
+- **`Sanitización de Entradas`**: Se ha mejorado la función de sanitización de entradas para proteger contra ataques de inyección de código. La función `sanitizeInput` elimina etiquetas HTML y scripts potencialmente dañinos de los valores de entrada, asegurando que solo se almacenen datos limpios y seguros. Esto es crucial para prevenir ataques de Cross-Site Scripting (XSS).
+- **`Protección contra Inyecciones SQL`**: Aunque el hook en sí no interactúa directamente con bases de datos, la sanitización de entradas ayuda a prevenir inyecciones SQL al asegurar que los datos que se envían a las API están debidamente filtrados. Esto es especialmente importante cuando se trabaja con APIs que pueden realizar operaciones de base de datos.
 
 
-### Ventajas
+Aquí tienes un resumen sobre las ventajas de usar el hook `useTargetHandler`, incluyendo la funcionalidad de manejo de variables de entorno para su uso en plataformas en la nube como Vercel e Infisical.
 
-- Simplifica la gestión de formularios en React
-- Permite personalizar el estado inicial del formulario
-- Proporciona una forma fácil de actualizar el estado del formulario en tiempo real
-- Incluye una función para enviar el formulario de manera segura
-- Reinicializa el formulario después de enviarlo
-- Implementa validaciones personalizadas para cada campo.
+### Ventajas de Usar el Hook `useTargetHandler`
+
+- **`Simplificación de la Gestión de Formularios en React`**: `useTargetHandler` proporciona una solución integral para manejar el estado de los campos de un formulario, lo que reduce la complejidad de la gestión de formularios en aplicaciones React.
+
+- **`Valores Iniciales Personalizables`**: Permite pasar valores iniciales para el formulario, lo que te da flexibilidad para adaptarlo a tus necesidades específicas.
+
+- **`Gestión de Estado en Tiempo Real`**: Proporciona una forma fácil de actualizar el estado del formulario en tiempo real según los cambios realizados por el usuario. Esto mejora la experiencia del usuario al interactuar con el formulario.
+
+- **`Envío de Formularios Seguro`**: Incluye una función `handleSubmit` que permite enviar el formulario de manera segura, validando los campos antes de realizar cualquier acción, lo que ayuda a prevenir errores y asegurar la integridad de los datos.
+
+- **`Reinicialización del Formulario`**: Después de enviar el formulario, `useTargetHandler` reinicializa el estado del formulario a sus valores iniciales, lo que facilita la reutilización del formulario sin necesidad de configuraciones adicionales.
+
+- **`Validación de Campos`**: Implementa validaciones personalizadas para cada campo del formulario, asegurando que los datos ingresados por el usuario cumplan con los requisitos establecidos. Esto incluye mensajes de error personalizados para una mejor comunicación con el usuario.
+
+- **`Limitación de Tasa (Rate Limiting)`**: Previene el envío excesivo de solicitudes en un corto período de tiempo, mejorando la estabilidad del servidor y la experiencia del usuario. Puedes establecer un intervalo de tiempo mínimo entre envíos de formularios.
+
+- **`Sanitización de Entradas`**: Protege contra ataques de inyección de código al eliminar etiquetas HTML y scripts potencialmente dañinos de los valores de entrada, asegurando que solo se almacenen datos limpios y seguros.
+
+- **`Protección contra Inyecciones SQL`**: Aunque el hook no interactúa directamente con bases de datos, la sanitización de entradas ayuda a prevenir inyecciones SQL al asegurar que los datos enviados a las API estén debidamente filtrados.
+
+- **`Persistencia del Estado y Almacenamiento Condicional`**: Guarda el estado del formulario en `localStorage` o `sessionStorage`, permitiendo a los usuarios retomar formularios incompletos.
+
+- **`Integración Mejorada con `useHttpRequest``**: Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva.
+
+- **`Protección CSRF`**: Al activar `enableCSRF=true`, el hook incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE), protegiendo así contra ataques maliciosos.
+
+- **`Manejo de Variables de Entorno para la URL de la API`**: El hook utiliza la función `getEnvVar` para obtener la URL de la API a partir de variables de entorno. Esto permite una configuración más flexible y segura de la aplicación, especialmente en plataformas en la nube como Vercel e Infisical entre otros, donde puedes declarar variables de entorno directamente en la nube.
 
 ### Uso 💎
 
@@ -136,9 +160,8 @@ const Formulario = () => {
          selectedMessage: "Debes seleccionar ciudad",
       },
     },
-      "local",
-      "formData",
-      true  // Activar Protección CSRF
+      { storageType: "session", storageKey: "forms" },
+      { enableCSRF: true, rateLimit: 2000 }
   );
 
   const onSubmit = () => {
