@@ -46,9 +46,6 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
 - **`Sanitización de Entradas`**: Se ha mejorado la función de sanitización de entradas para proteger contra ataques de inyección de código. La función `sanitizeInput` elimina etiquetas HTML y scripts potencialmente dañinos de los valores de entrada, asegurando que solo se almacenen datos limpios y seguros. Esto es crucial para prevenir ataques de Cross-Site Scripting (XSS).
 - **`Protección contra Inyecciones SQL`**: Aunque el hook en sí no interactúa directamente con bases de datos, la sanitización de entradas ayuda a prevenir inyecciones SQL al asegurar que los datos que se envían a las API están debidamente filtrados. Esto es especialmente importante cuando se trabaja con APIs que pueden realizar operaciones de base de datos.
 
-
-Aquí tienes un resumen sobre las ventajas de usar el hook `useTargetHandler`, incluyendo la funcionalidad de manejo de variables de entorno para su uso en plataformas en la nube como Vercel e Infisical.
-
 ### Ventajas de Usar el Hook `useTargetHandler`
 
 - **`Simplificación de la Gestión de Formularios en React`**: `useTargetHandler` proporciona una solución integral para manejar el estado de los campos de un formulario, lo que reduce la complejidad de la gestión de formularios en aplicaciones React.
