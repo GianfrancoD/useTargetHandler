@@ -1,3 +1,51 @@
+# Versión 1.2.5: Mejoras en el Manejo de Errores y Experiencia del Usuario
+
+## Innovaciones y Mejoras 🚀
+
+La versión 1.2.5 del hook `useTargetHandler` introduce funcionalidades clave que optimizan el manejo de errores y mejoran la experiencia del usuario durante el envío de formularios.
+
+### 🛠️ Integración Mejorada con Sentry
+
+Esta actualización permite un seguimiento más efectivo de los errores y eventos en tu aplicación. Ahora, `useTargetHandler` incluye nuevos parámetros que facilitan la integración con Sentry, permitiendo registrar:
+
+- **`SentryWarning`**: Captura advertencias relacionadas con la validación de formularios y otros eventos que requieren atención.
+- **`SentryError`**: Registra errores críticos que ocurren durante el envío de formularios, ayudando a identificar y solucionar problemas rápidamente.
+- **`SentryInfo`**: Proporciona información relevante sobre el proceso de envío, lo que permite un análisis más profundo del comportamiento del usuario.
+- **`SentryEvent`**: Registra eventos importantes, como envíos exitosos de formularios, para un mejor seguimiento de la actividad del usuario.
+
+### ⏳ Estado `isLoading`
+
+La nueva funcionalidad de estado `isLoading` mejora la experiencia del usuario al proporcionar retroalimentación visual durante el envío del formulario. Ahora puedes:
+
+- **Deshabilitar el botón de envío** mientras se procesa la solicitud, evitando envíos múltiples y mejorando la estabilidad del servidor.
+- **Mostrar un indicador de carga** que informa al usuario que su solicitud está siendo procesada, lo que reduce la incertidumbre y mejora la usabilidad.
+
+ANTES ❌
+```jsx
+const [ target,handleTarget,handleSubmit,errors,
+{ apiCall, userFound, apiResponse }, // useHttpRequest
+apiUrl] = useTargetHandler(
+    { storageType:"session", storageKey:"formData" },
+    { enableCSRF: false, rateLimit: 2000 }
+)
+<button type="submit">
+    Enviar
+</button>
+```
+
+AHORA ✅
+```jsx
+const [ target,handleTarget,handleSubmit,errors,
+{ apiCall, userFound, apiResponse, isLoading, SentryWarning, SentryInfo, SentryError, SentryEvent }, // useHttpRequest
+apiUrl] = useTargetHandler(
+    { storageType:"session", storageKey:"formData" },
+    { enableCSRF: false, rateLimit: 2000 }
+)
+<button type="submit" disabled={isLoading}>
+    {isLoading ? "Cargando..." : "Enviar"}
+</button>
+```
+
 # Versión 1.2.4: Mejoras en la Seguridad y Gestión de Formularios
 
 ## Innovaciones y Mejoras 🚀
