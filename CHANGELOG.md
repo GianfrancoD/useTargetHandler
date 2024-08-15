@@ -1,6 +1,7 @@
-### Versión 1.2.5 - 2024-08-15
+## Versión 1.2.5 - 2024-08-15
 
-#### Nuevas Características ✨
+### Nuevas Características ✨
+
 - **Integración Mejorada con Sentry**: 
   - Se han añadido nuevos parámetros en el hook `useTargetHandler` para registrar advertencias, errores, información y eventos específicos en Sentry durante el proceso de envío de formularios. Esto mejora el seguimiento de problemas y la depuración de errores en la aplicación.
   - Los parámetros incluyen:
