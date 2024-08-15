@@ -73,8 +73,18 @@ const useTargetHandler = (
   const { enableCSRF, rateLimit } = security;
   const { storageType, storageKey } = Storage;
 
-  const { apiCall, apiResponse, userFound, error, params } =
-    useHttpRequest(enableCSRF);
+  const {
+    apiCall,
+    apiResponse,
+    userFound,
+    error,
+    params,
+    isLoading,
+    SentryWarning,
+    SentryError,
+    SentryInfo,
+    SentryEvent,
+  } = useHttpRequest(enableCSRF);
   const storage =
     storageType == "local"
       ? localStorage
@@ -101,6 +111,7 @@ const useTargetHandler = (
   const handleSubmit = useCallback(
     (callback) => async (e) => {
       e.preventDefault();
+      SentryInfo("Iniciando el envío del formulario");
 
       const currentTime = Date.now();
       if (currentTime - lastSubmitTime < rateLimit) {
@@ -131,13 +142,16 @@ const useTargetHandler = (
       );
 
       Object.keys(newError).length > 0
-        ? (setErrors(newError), console.log("Errores encontrados:", newError))
+        ? (setErrors(newError),
+          console.log("Errores encontrados:", newError),
+          SentryWarning("Errores encontrados en el formulario", newError))
         : (async () => {
             console.log("Enviar datos:", target);
             storage && storage.setItem(storageKey, JSON.stringify(target));
             setTarget(initialValues);
             setErrors({});
             callback(target);
+            SentryEvent("Formulario enviado exitosamente");
           })();
     },
     [target, validateRules, lastSubmitTime, initialValues]
@@ -148,7 +162,18 @@ const useTargetHandler = (
     handleTarget,
     handleSubmit,
     errors,
-    { apiCall, apiResponse, userFound, error, params },
+    {
+      apiCall,
+      apiResponse,
+      userFound,
+      error,
+      params,
+      isLoading,
+      SentryWarning,
+      SentryError,
+      SentryInfo,
+      SentryEvent,
+    },
     apiUrl,
   ];
 };
