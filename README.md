@@ -101,6 +101,7 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
       - `SentryError`: Permite registrar errores en Sentry, asegurando un manejo adecuado de excepciones.
       - `SentryInfo`: Registra información relevante en Sentry durante el proceso de envío del formulario.
       - `SentryEvent`: Registra eventos específicos en Sentry, proporcionando un seguimiento más detallado de las acciones del usuario.
+      - `useTargetHandler` ahora integra Sentry para el manejo de errores y el seguimiento de eventos. Esto permite registrar advertencias, errores e información relevante durante el proceso de envío de formularios.
 
  NUEVO 🆕 - 
 [FUNCTIONALITY](FUNCTIONALITY.md) - [CHANGELOG](./CHANGELOG.md) 
