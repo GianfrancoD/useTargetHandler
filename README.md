@@ -40,7 +40,7 @@ Ver los cambios realizados en el Hook [CHANGELOG](./CHANGELOG.md)
 - **`Persistencia del Estado y Almacenamiento Condicional`**:
 El hook guarda el estado del formulario en localStorage o sessionStorage, permitiendo a los usuarios retomar formularios incompletos.
 - **`Declaración de Variables de Entorno en la Nube`**: Declarar variables de entorno directamente en la nube, lo que permite una configuración más segura y flexible de tu aplicación. Esto simplifica la gestión de configuraciones en distintos entornos sin necesidad de modificar el código fuente.
-- **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva.
+- **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva, como tambien se crearon nuevas funcionalidades que se pueden utilizar para `Sentry` y `isLoading`
 - **`Protección CSRF en useTargetHandler`**: Al activar `enableCSRF=true`, el hook useTargetHandler incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE) a través de `useHttpRequest`, protegiendo así contra ataques maliciosos.
 - **`Limitación de Tasa (Rate Limiting)`**: La nueva versión implementa una funcionalidad de limitación de tasa que previene el envío excesivo de solicitudes en un corto período de tiempo. Ahora puedes establecer un intervalo de tiempo mínimo entre envíos de formularios, mejorando la experiencia del usuario y la estabilidad del servidor. Simplemente ajusta el parámetro `rateLimit` al usar el hook.
 - **`Sanitización de Entradas`**: Se ha mejorado la función de sanitización de entradas para proteger contra ataques de inyección de código. La función `sanitizeInput` elimina etiquetas HTML y scripts potencialmente dañinos de los valores de entrada, asegurando que solo se almacenen datos limpios y seguros. Esto es crucial para prevenir ataques de Cross-Site Scripting (XSS).
@@ -68,7 +68,11 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
 
 - **`Persistencia del Estado y Almacenamiento Condicional`**: Guarda el estado del formulario en `localStorage` o `sessionStorage`, permitiendo a los usuarios retomar formularios incompletos.
 
-- **`Integración Mejorada con `useHttpRequest``**: Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva.
+- **`Integración Mejorada con useHttpRequest`**: useTargetHandler ahora se integra de forma más fluida con el hook useHttpRequest, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva.
+
+- **Se han agregado nuevas funcionalidades que se pueden utilizar para mejorar la experiencia del usuario y el seguimiento de eventos**:
+   - `isLoading`: Indica el estado de carga durante el envío del formulario, mejorando la experiencia del usuario al mostrar un indicador de progreso o deshabilitar el botón de envío mientras se procesa la solicitud.
+   - `SentryWarning, SentryError, SentryInfo y SentryEvent`: Estas funciones permiten registrar advertencias, errores, información y eventos específicos en la plataforma de seguimiento de errores Sentry. Esto facilita el seguimiento de problemas en el formulario, la depuración de errores y el análisis del comportamiento del usuario.
 
 - **`Protección CSRF`**: Al activar `enableCSRF=true`, el hook incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE), protegiendo así contra ataques maliciosos.
 
@@ -91,6 +95,12 @@ El hook guarda el estado del formulario en localStorage o sessionStorage, permit
   - Cuando configuras un campo en tu formulario y estableces `required: true`, estás indicando que este campo es obligatorio. Esto no solo activa la validación para asegurarte de que el usuario complete el campo, sino que también permite el uso de otras reglas de validación relacionadas, como:
     - `pattern`, `patternMessage`, `requiredMessage`, `minLength`, `minLength`,  `maxLength`, `matches`, `matchMessage`, `min`, `max`, `checked`, `checkedMessage`, `selected`, `selectedMessage`.
   - `useTargetHandler` ya tiene incorporado dotenv y axios por parte de `useHttpRequest`.
+  - Se integro nuevas funcionalidades del `useHttpRequest` a `useTargetHandler`:
+      - `isLoading`: Indica el estado de carga durante el envío del formulario, mejorando la experiencia del usuario.
+      - `SentryWarning`: Permite registrar advertencias en Sentry, facilitando el seguimiento de problemas en el formulario.
+      - `SentryError`: Permite registrar errores en Sentry, asegurando un manejo adecuado de excepciones.
+      - `SentryInfo`: Registra información relevante en Sentry durante el proceso de envío del formulario.
+      - `SentryEvent`: Registra eventos específicos en Sentry, proporcionando un seguimiento más detallado de las acciones del usuario.
 
  NUEVO 🆕 - 
 [FUNCTIONALITY](FUNCTIONALITY.md) - [CHANGELOG](./CHANGELOG.md) 
@@ -276,22 +286,29 @@ const Formulario = () => {
 import { useTargetHandler } from "usetargethandler";
 
 export const Formulario = () => {
-  const [target, handleTarget handleSubmit, errors, { apiCall, apiResponse, userFound, error }, apiUrl] = useTargetHandler({
+  const [target, handleTarget handleSubmit, errors, { apiCall, apiResponse, userFound, isLoading, SentryWarning, SentryError, SentryInfo, SentryEvent }, apiUrl] = useTargetHandler({
     nombre: "",
     apellido: "",
   });
 
   const onSubmit = async (data) => {
     try {
-      // Realiza la llamada a la API
-      await apiCall("users", 1, data, "post", "application/json", { page: 1, limit: 10 }); // de ejemplo
+         SentryInfo("Iniciando el envío de datos del formulario", { data });
+         // Realiza la llamada a la API
+         await apiCall("users", 1, data, "post", "application/json", { page: 1, limit: 10 }); // de ejemplo
       if (userFound) {
-        console.log("Usuario creado:", apiResponse);
+         console.log("Usuario creado:", apiResponse);
+         // Registra un evento exitoso en Sentry
+         SentryEvent("Usuario creado exitosamente", { user: apiResponse });
       } else {
-        console.error("Error al crear usuario:", error);
+         console.error("Error al crear usuario:", error);
+         // Registra un error en Sentry si no se encuentra el usuario
+         SentryError("Error al crear usuario", { error });
       }
     } catch (err) {
       console.error("Error en la llamada a la API:", err);
+      // Registra el error en Sentry
+      SentryError("Error en la llamada a la API", { error: err });
     }
   };
 
@@ -322,7 +339,7 @@ export const Formulario = () => {
         />
       {errors.apellido && <span>{errors.apellido.message}</span>}
 
-        <button>Enviar</button>
+        <button disabled={isLoading}>{isLoading ? 'Enviando...' : 'Enviar'}</button>
       </form>
 
       {apiResponse ? (
