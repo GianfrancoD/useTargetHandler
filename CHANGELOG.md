@@ -1,3 +1,31 @@
+### Versión 1.2.5 - 2024-08-15
+
+#### Nuevas Características ✨
+- **Integración Mejorada con Sentry**: 
+  - Se han añadido nuevos parámetros en el hook `useTargetHandler` para registrar advertencias, errores, información y eventos específicos en Sentry durante el proceso de envío de formularios. Esto mejora el seguimiento de problemas y la depuración de errores en la aplicación.
+  - Los parámetros incluyen:
+    - `SentryWarning`: Para registrar advertencias.
+    - `SentryError`: Para registrar errores.
+    - `SentryInfo`: Para registrar información relevante.
+    - `SentryEvent`: Para registrar eventos específicos.
+
+#### Mejoras 🔧
+- **Manejo de Estado `isLoading`**: 
+  - Se ha implementado el estado `isLoading` en el hook `useTargetHandler`, lo que permite deshabilitar el botón de envío y mostrar un indicador de carga mientras se procesa la solicitud. Esto mejora la experiencia del usuario al proporcionar retroalimentación visual durante el envío del formulario.
+
+---
+
+### Notas
+
+- **Instrucciones de Actualización**: Para actualizar a la versión 1.2.5, utiliza el siguiente comando:
+  ```bash
+  npm install usetargethandler@latest
+  ```
+  ```bash
+  npm update usetargethandler
+  ```
+
+---
 ## [1.2.4] - 2024-08-10
 
 ### ✨ Mejoras y Nuevas Funcionalidades 🚀
