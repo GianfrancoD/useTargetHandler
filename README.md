@@ -12,7 +12,7 @@ Ver los cambios realizados en el Hook [CHANGELOG](./CHANGELOG.md)
 
 - Conoce las mejoras y cambios en la funcionalidad del Hook [FUNCTIONALITY](FUNCTIONALITY.md)
 
-# Hook useTargetHandler 📝
+# Hook useTargetHandler 📝 `JS`
 
 ### Instalaciòn
 ```jsx
