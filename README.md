@@ -63,9 +63,9 @@ import { useTargetHandler, z } from "usetargethandler";
 - **`Persistencia del Estado y Almacenamiento Condicional`**:
   El hook guarda el estado del formulario en localStorage o sessionStorage, permitiendo a los usuarios retomar formularios incompletos.
 - **`Declaración de Variables de Entorno en la Nube`**: Declarar variables de entorno directamente en la nube, lo que permite una configuración más segura y flexible de tu aplicación. Esto simplifica la gestión de configuraciones en distintos entornos sin necesidad de modificar el código fuente.
-  <<<<<<< HEAD
+
 - **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva, como tambien se crearon nuevas funcionalidades que se pueden utilizar para `Sentry` y `isLoading`
-- # **`Protección CSRF en useTargetHandler`**: Al activar `enableCSRF=true`, el hook useTargetHandler incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE) a través de `useHttpRequest`, protegiendo así contra ataques maliciosos.
+- **`Protección CSRF en useTargetHandler`**: Al activar `enableCSRF=true`, el hook useTargetHandler incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE) a través de `useHttpRequest`, protegiendo así contra ataques maliciosos.
 - **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva.
 - **`Protección CSRF (Cross-Site Request Forgery)`**: Al activar `enableCSRF=true`, el hook utiliza `useHttpRequest` para leer el token CSRF de las cookies e incluir el header `X-CSRF-Token` en las solicitudes HTTP mutantes (POST, PUT, DELETE). **IMPORTANTE:** Esta protección requiere que tu backend:
 
@@ -74,8 +74,6 @@ import { useTargetHandler, z } from "usetargethandler";
   - Configure correctamente las cookies CSRF (recomendado: SameSite=Strict o Lax)
 
   **Compatibilidad de navegadores:** La detección de velocidad de conexión (2G/3G/4G) solo funciona en Chrome, Edge y Opera (no en Firefox/Safari). En navegadores no compatibles, usará un delay predeterminado de 2000ms.
-
-> > > > > > > 37784f3 (feat(validation): add Zod integration with auto-detection)
 
 - **`Limitación de Tasa (Rate Limiting)`**: La nueva versión implementa una funcionalidad de limitación de tasa que previene el envío excesivo de solicitudes en un corto período de tiempo. Ahora puedes establecer un intervalo de tiempo mínimo entre envíos de formularios, mejorando la experiencia del usuario y la estabilidad del servidor. Simplemente ajusta el parámetro `rateLimit` al usar el hook.
 - **`Protección XSS (Cross-Site Scripting)`**: El hook utiliza **DOMPurify**, una librería de sanitización de alto nivel, para prevenir ataques XSS. La función `sanitizeInput` elimina:
