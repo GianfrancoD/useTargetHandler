@@ -1,0 +1,30 @@
+# Source files - no publicar archivos fuente
+src/
+!src/index.ts
+
+# Config files
+tsconfig.json
+tsconfig.build.json
+.eslintrc
+.prettierrc
+
+# Demo/Testing files
+public/
+*.test.js
+*.test.ts
+*.test.tsx
+setupTests.js
+reportWebVitals.js
+
+# Development
+node_modules/
+.git/
+.DS_Store
+.env*
+
+# Build artifacts innecesarios
+*.map
+coverage/
+
+# Documentation de desarrollo
+.github/

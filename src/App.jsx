@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import useTargetHandler from "./useTargetHandlerTS";
+import useTargetHandler from "./useTargetHandler";
 
 function App() {
   const [target, setTarget, handleSubmit] = useTargetHandler({
