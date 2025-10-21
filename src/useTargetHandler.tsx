@@ -1,7 +1,6 @@
 import { useCallback, useState, useMemo } from "react";
 import DOMPurify from "dompurify";
 import { validateWithZod } from "./zodAdapter";
-import { getUseHttpRequest, createDefaultHttpRequest } from "./httpRequestHelper";
 
 export interface ValidationRule {
   required?: boolean;
@@ -196,7 +195,8 @@ const useTargetHandler = <T extends FormValues = FormValues>(
   initialValues: T,
   validationRulesOrSchema: ValidationRules | any = {},
   Storage: StorageConfig = { storageType: "", storageKey: "formData" },
-  security: SecurityConfig = { enableCSRF: false, rateLimit: 0 }
+  security: SecurityConfig = { enableCSRF: false, rateLimit: 0 },
+  httpHook?: (enableCSRF?: boolean) => UseHttpRequestReturn
 ): UseTargetHandlerReturn<T> => {
   const { enableCSRF, rateLimit } = security;
   const { storageType, storageKey } = Storage;
@@ -219,23 +219,18 @@ const useTargetHandler = <T extends FormValues = FormValues>(
     [isZodSchema, validationRulesOrSchema]
   );
 
-  // Usar useHttpRequest si está disponible, sino proporcionar valores por defecto
-  const useHttpRequestHook = getUseHttpRequest();
-  const httpRequestHook = useHttpRequestHook 
-    ? useHttpRequestHook(enableCSRF)
-    : createDefaultHttpRequest();
+  // Usar httpHook si se proporciona, sino valores por defecto seguros
+  const httpRequestHook = httpHook ? httpHook(enableCSRF) : null;
 
-  const {
-    apiCall,
-    apiResponse,
-    userFound,
-    error,
-    isLoading,
-    SentryWarning,
-    SentryError,
-    SentryInfo,
-    SentryEvent,
-  } = httpRequestHook;
+  const apiCall = useMemo(() => httpRequestHook?.apiCall ?? (async () => {}), [httpRequestHook]);
+  const apiResponse = httpRequestHook?.apiResponse ?? null;
+  const userFound = httpRequestHook?.userFound ?? false;
+  const error = httpRequestHook?.error ?? null;
+  const isLoading = httpRequestHook?.isLoading ?? false;
+  const SentryWarning = useMemo(() => httpRequestHook?.SentryWarning ?? (() => {}), [httpRequestHook]);
+  const SentryError = useMemo(() => httpRequestHook?.SentryError ?? (() => {}), [httpRequestHook]);
+  const SentryInfo = useMemo(() => httpRequestHook?.SentryInfo ?? (() => {}), [httpRequestHook]);
+  const SentryEvent = useMemo(() => httpRequestHook?.SentryEvent ?? (() => {}), [httpRequestHook]);
 
   const storage =
     storageType === "local"
@@ -269,8 +264,10 @@ const useTargetHandler = <T extends FormValues = FormValues>(
 
       if (isInput && type === "checkbox") {
         processedValue = element.checked;
+      } else if (type === "number") {
+        // Convertir a número para compatibilidad con Zod
+        processedValue = value === "" ? "" : Number(value);
       } else if (
-        type === "number" ||
         type === "password" ||
         element.tagName === "SELECT" ||
         element.tagName === "TEXTAREA"

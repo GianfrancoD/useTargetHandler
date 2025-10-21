@@ -6,6 +6,17 @@
     "sourceMap": false,
     "emitDeclarationOnly": false
   },
-  "include": ["src/useTargetHandler.tsx", "src/index.ts", "src/zodAdapter.ts", "src/usehttprequest.d.ts", "src/httpRequestHelper.ts"],
-  "exclude": ["src/App.tsx", "src/App.test.js", "src/setupTests.js", "src/reportWebVitals.js"]
+  "include": [
+    "src/useTargetHandler.tsx",
+    "src/index.ts",
+    "src/zodAdapter.ts",
+    "src/usehttprequest.d.ts",
+    "src/httpRequestHelper.ts"
+  ],
+  "exclude": [
+    "src/App.tsx",
+    "src/App.test.js",
+    "src/setupTests.js",
+    "src/reportWebVitals.js"
+  ]
 }

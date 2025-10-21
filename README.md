@@ -63,32 +63,203 @@ import { useTargetHandler, z } from "usetargethandler";
 - **`Persistencia del Estado y Almacenamiento Condicional`**:
   El hook guarda el estado del formulario en localStorage o sessionStorage, permitiendo a los usuarios retomar formularios incompletos.
 
-### ⚙️ Configuración Opcional
+### ⚙️ Configuración
 
-**Funcionalidades HTTP (Opcional):**
+**Dos Formas de Usar el Hook:**
 
-Si necesitas usar las funcionalidades HTTP integradas (Sentry, `isLoading`, llamadas API), debes:
+#### **1️⃣ Modo Básico (Sin HTTP)**
+Solo validación de formularios, sin necesidad de instalar dependencias adicionales:
 
-1. **Instalar `usehttprequest` (opcional):**
-```bash
-npm install usehttprequest
+```typescript
+import { useTargetHandler } from "usetargethandler";
+
+const [target, handleTarget, handleSubmit, errors] = useTargetHandler(
+  initialValues,
+  validationRules,
+  { storageType: "local" },
+  { enableCSRF: false, rateLimit: 1000 }
+  // ← Sin httpHook
+);
 ```
 
-2. **Configurar variables de entorno:**
-Crea un archivo `.env` en la raíz de tu proyecto:
+#### **2️⃣ Modo Completo (Con HTTP)**
+Con funcionalidades HTTP (Sentry, `isLoading`, API calls):
 
+```typescript
+import { useTargetHandler } from "usetargethandler";
+import { useHttpRequest } from "usehttprequest";  // ← Instalado por separado
+
+const [target, handleTarget, handleSubmit, errors, httpRequest] = useTargetHandler(
+  initialValues,
+  validationRules,
+  { storageType: "local" },
+  { enableCSRF: true, rateLimit: 1000 },
+  useHttpRequest  // ← Pasar el hook
+);
+
+// Ahora tienes acceso a todas las funcionalidades HTTP:
+const { 
+  apiCall,        // Función para hacer llamadas a la API
+  apiResponse,    // Respuesta de la última llamada
+  userFound,      // Boolean si el usuario fue encontrado
+  error,          // Error de la última llamada
+  isLoading,      // Estado de carga
+  SentryWarning,  // Función para warnings
+  SentryError,    // Función para errores
+  SentryInfo,     // Función para información
+  SentryEvent     // Función para eventos
+} = httpRequest;
+
+// Ejemplo de uso de apiCall:
+const handleLogin = async () => {
+  await apiCall(
+    "POST",
+    "/auth/login",
+    { email: target.email, password: target.password }
+  );
+  
+  if (httpRequest.apiResponse) {
+    console.log("Login exitoso:", httpRequest.apiResponse);
+  }
+  
+  if (httpRequest.error) {
+    httpRequest.SentryError("Error en login", httpRequest.error);
+  }
+};
+
+// Mostrar spinner mientras carga:
+{isLoading && <div>Cargando...</div>}
+```
+
+**Configurar variables de entorno (solo para Modo Completo):**
 ```bash
 # Si usas Vite
 VITE_API_URL=https://tu-api.com
 
 # Si usas Create React App
 REACT_APP_API_URL=https://tu-api.com
-
-# Para desarrollo local
-VITE_API_URL=http://localhost:3000/api
 ```
 
-**⚠️ Nota:** Si NO instalas `usehttprequest`, el hook funcionará perfectamente para validación de formularios, pero las funcionalidades HTTP no estarán disponibles.
+**⚠️ Importante:** Reinicia tu servidor de desarrollo después de crear o modificar el archivo `.env`.
+
+---
+
+### 📝 **Ejemplo Completo con `apiCall`**
+
+```typescript
+import React from "react";
+import { useTargetHandler } from "usetargethandler";
+import { useHttpRequest } from "usehttprequest";
+
+export const LoginForm = () => {
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const validationRules = {
+    email: {
+      required: true,
+      requiredMessage: "Email es requerido",
+      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      patternMessage: "Email inválido",
+    },
+    password: {
+      required: true,
+      minLength: 6,
+      minLengthMessage: "Mínimo 6 caracteres",
+    },
+  };
+
+  const [target, handleTarget, handleSubmit, errors, httpRequest] = useTargetHandler(
+    initialValues,
+    validationRules,
+    { storageType: "session", storageKey: "loginForm" },
+    { enableCSRF: true, rateLimit: 3000 },
+    useHttpRequest  // ← Pasar useHttpRequest
+  );
+
+  // Destructurar funcionalidades HTTP
+  const { apiCall, isLoading, error, apiResponse, SentryError, SentryInfo } = httpRequest;
+
+  const onSubmit = async (data: typeof initialValues) => {
+    try {
+      SentryInfo("Intentando login", { email: data.email });
+      
+      // Hacer llamada a la API
+      await apiCall("POST", "/auth/login", {
+        email: data.email,
+        password: data.password,
+      });
+
+      // Verificar respuesta
+      if (apiResponse) {
+        console.log("✅ Login exitoso:", apiResponse);
+        // Redirigir o guardar token
+        localStorage.setItem("token", apiResponse.token);
+        window.location.href = "/dashboard";
+      }
+
+      if (error) {
+        SentryError("Error en login", error);
+        alert("Credenciales inválidas");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          value={target.email}
+          onChange={handleTarget}
+        />
+        {errors.email && <span>{errors.email.message}</span>}
+      </div>
+
+      <div>
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          value={target.password}
+          onChange={handleTarget}
+        />
+        {errors.password && <span>{errors.password.message}</span>}
+      </div>
+
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? "Iniciando sesión..." : "Login"}
+      </button>
+
+      {error && <div className="error">Error: {error.message}</div>}
+    </form>
+  );
+};
+```
+
+**Métodos HTTP disponibles en `apiCall`:**
+```typescript
+// GET
+await apiCall("GET", "/users");
+
+// POST
+await apiCall("POST", "/users", { name: "John", email: "john@example.com" });
+
+// PUT
+await apiCall("PUT", "/users/123", { name: "John Updated" });
+
+// DELETE
+await apiCall("DELETE", "/users/123");
+
+// PATCH
+await apiCall("PATCH", "/users/123", { email: "newemail@example.com" });
+```
 
 - **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva, como tambien se crearon nuevas funcionalidades que se pueden utilizar para `Sentry` y `isLoading`
 - **`Protección CSRF en useTargetHandler`**: Al activar `enableCSRF=true`, el hook useTargetHandler incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE) a través de `useHttpRequest`, protegiendo así contra ataques maliciosos.
