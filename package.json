@@ -50,10 +50,17 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
+  "peerDependenciesMeta": {
+    "usehttprequest": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "dompurify": "^3.3.0",
-    "usehttprequest": "^1.0.0",
     "zod": "^3.23.8"
+  },
+  "optionalDependencies": {
+    "usehttprequest": "^1.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",

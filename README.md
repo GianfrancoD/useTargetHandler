@@ -62,7 +62,33 @@ import { useTargetHandler, z } from "usetargethandler";
 - **`Validación de campos`**: El hook permite implementar validaciones personalizadas para cada campo del formulario, asegurando que los datos ingresados por el usuario cumplan con los requisitos establecidos.
 - **`Persistencia del Estado y Almacenamiento Condicional`**:
   El hook guarda el estado del formulario en localStorage o sessionStorage, permitiendo a los usuarios retomar formularios incompletos.
-- **`Declaración de Variables de Entorno en la Nube`**: Declarar variables de entorno directamente en la nube, lo que permite una configuración más segura y flexible de tu aplicación. Esto simplifica la gestión de configuraciones en distintos entornos sin necesidad de modificar el código fuente.
+
+### ⚙️ Configuración Opcional
+
+**Funcionalidades HTTP (Opcional):**
+
+Si necesitas usar las funcionalidades HTTP integradas (Sentry, `isLoading`, llamadas API), debes:
+
+1. **Instalar `usehttprequest` (opcional):**
+```bash
+npm install usehttprequest
+```
+
+2. **Configurar variables de entorno:**
+Crea un archivo `.env` en la raíz de tu proyecto:
+
+```bash
+# Si usas Vite
+VITE_API_URL=https://tu-api.com
+
+# Si usas Create React App
+REACT_APP_API_URL=https://tu-api.com
+
+# Para desarrollo local
+VITE_API_URL=http://localhost:3000/api
+```
+
+**⚠️ Nota:** Si NO instalas `usehttprequest`, el hook funcionará perfectamente para validación de formularios, pero las funcionalidades HTTP no estarán disponibles.
 
 - **`Integración Mejorada con useHttpRequest`**: `useTargetHandler` Ahora se integra de forma más fluida con el hook `useHttpRequest`, permitiendo realizar llamadas a la API directamente desde el formulario y gestionar las respuestas de manera efectiva, como tambien se crearon nuevas funcionalidades que se pueden utilizar para `Sentry` y `isLoading`
 - **`Protección CSRF en useTargetHandler`**: Al activar `enableCSRF=true`, el hook useTargetHandler incluye automáticamente un token CSRF en las solicitudes HTTP que modifican datos (POST, PUT, DELETE) a través de `useHttpRequest`, protegiendo así contra ataques maliciosos.

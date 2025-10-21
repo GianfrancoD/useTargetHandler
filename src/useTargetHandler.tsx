@@ -1,7 +1,7 @@
 import { useCallback, useState, useMemo } from "react";
-import { useHttpRequest } from "usehttprequest";
 import DOMPurify from "dompurify";
 import { validateWithZod } from "./zodAdapter";
+import { getUseHttpRequest, createDefaultHttpRequest } from "./httpRequestHelper";
 
 export interface ValidationRule {
   required?: boolean;
@@ -219,7 +219,11 @@ const useTargetHandler = <T extends FormValues = FormValues>(
     [isZodSchema, validationRulesOrSchema]
   );
 
-  const httpRequestHook = useHttpRequest(enableCSRF);
+  // Usar useHttpRequest si está disponible, sino proporcionar valores por defecto
+  const useHttpRequestHook = getUseHttpRequest();
+  const httpRequestHook = useHttpRequestHook 
+    ? useHttpRequestHook(enableCSRF)
+    : createDefaultHttpRequest();
 
   const {
     apiCall,
