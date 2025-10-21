@@ -1,5 +1,5 @@
 import { useCallback, useState, useMemo } from "react";
-import useHttpRequest from "usehttprequest";
+import { useHttpRequest } from "usehttprequest";
 import DOMPurify from "dompurify";
 import { validateWithZod } from "./zodAdapter";
 

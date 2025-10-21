@@ -33,5 +33,6 @@ declare module "usehttprequest" {
 
   function useHttpRequest(enableCSRF?: boolean): UseHttpRequestReturn;
 
+  export { useHttpRequest };
   export default useHttpRequest;
 }
